@@ -3,6 +3,13 @@ import { Palette, HardHat, Sofa } from 'lucide-react';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
 import { fadeInUp, staggerContainer, fadeIn } from '../utils/animations';
 
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { EffectCoverflow, Pagination, Autoplay } from 'swiper/modules';
+
+import 'swiper/css';
+import 'swiper/css/effect-coverflow';
+import 'swiper/css/pagination';
+
 const services = [
   {
     icon: Palette,
@@ -27,19 +34,21 @@ const services = [
   },
 ];
 
+const extendedServices = [...services, ...services]; // Duplicate to ensure infinite loop works smoothly
+
 export default function ServicesSection() {
   const [sectionRef, isVisible] = useScrollAnimation({ threshold: 0.1 });
 
   return (
     <section
       id="layanan"
-      className="relative py-28 px-6"
+      className="relative py-28 px-0 sm:px-6"
       ref={sectionRef}
       aria-labelledby="services-heading"
     >
       {/* Subtle background pattern */}
       <div
-        className="absolute inset-0 opacity-5"
+        className="absolute inset-0 opacity-5 pointer-events-none"
         aria-hidden="true"
         style={{
           backgroundImage:
@@ -47,13 +56,13 @@ export default function ServicesSection() {
         }}
       />
 
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-[1400px] mx-auto">
         {/* Section Header */}
         <motion.div
           variants={staggerContainer}
           initial="hidden"
           animate={isVisible ? 'visible' : 'hidden'}
-          className="text-center mb-20"
+          className="text-center mb-16 px-6"
         >
           <motion.div variants={fadeIn} className="section-label justify-center">
             <span>Apa yang Kami Tawarkan</span>
@@ -78,76 +87,116 @@ export default function ServicesSection() {
           </motion.p>
         </motion.div>
 
-        {/* Service Cards */}
+        <style>{`
+          .services-swiper .swiper-pagination-bullet {
+            background: rgba(255,255,255,0.3);
+            width: 8px;
+            height: 8px;
+            transition: all 0.3s ease;
+          }
+          .services-swiper .swiper-pagination-bullet-active {
+            background: #C9A84C;
+            width: 24px;
+            border-radius: 4px;
+          }
+          .services-swiper {
+            padding-bottom: 50px !important;
+            padding-top: 20px !important;
+          }
+        `}</style>
+
+        {/* Service Cards Carousel */}
         <motion.div
-          variants={staggerContainer}
+          variants={fadeIn}
           initial="hidden"
           animate={isVisible ? 'visible' : 'hidden'}
-          className="grid grid-cols-1 md:grid-cols-3 gap-6"
+          className="w-full"
         >
-          {services.map((service, index) => {
-            const Icon = service.icon;
-            return (
-              <motion.article
-                key={service.title}
-                variants={fadeInUp}
-                className="service-card group"
-                aria-label={`Layanan ${service.title}`}
-              >
-                {/* Icon */}
-                <div className="relative mb-6">
-                  <div
-                    className="w-14 h-14 rounded-sm flex items-center justify-center
-                               bg-gold-DEFAULT/10 border border-gold-DEFAULT/20
-                               group-hover:bg-gold-DEFAULT/15 group-hover:border-gold-DEFAULT/40
-                               transition-all duration-400"
+          <Swiper
+            effect={'coverflow'}
+            grabCursor={true}
+            centeredSlides={true}
+            slidesPerView={'auto'}
+            loop={true}
+            autoplay={{
+              delay: 3500,
+              disableOnInteraction: false,
+            }}
+            coverflowEffect={{
+              rotate: 15,
+              stretch: 0,
+              depth: 150,
+              modifier: 1,
+              slideShadows: true,
+            }}
+            pagination={{ clickable: true }}
+            modules={[EffectCoverflow, Pagination, Autoplay]}
+            className="services-swiper w-full"
+          >
+            {extendedServices.map((service, index) => {
+              const Icon = service.icon;
+              return (
+                <SwiperSlide key={`${service.title}-${index}`} className="w-[320px] sm:w-[380px]">
+                  <article
+                    className="service-card group h-full flex flex-col"
+                    aria-label={`Layanan ${service.title}`}
                   >
-                    <Icon
-                      size={24}
-                      className="text-gold-DEFAULT"
+                    {/* Icon */}
+                    <div className="relative mb-6">
+                      <div
+                        className="w-14 h-14 rounded-sm flex items-center justify-center
+                                   bg-gold-DEFAULT/10 border border-gold-DEFAULT/20
+                                   group-hover:bg-gold-DEFAULT/15 group-hover:border-gold-DEFAULT/40
+                                   transition-all duration-400"
+                      >
+                        <Icon
+                          size={24}
+                          className="text-gold-DEFAULT"
+                          aria-hidden="true"
+                        />
+                      </div>
+                      {/* Number watermark */}
+                      <span
+                        className="absolute -top-2 -right-2 font-playfair text-5xl font-bold
+                                   text-white/5 select-none leading-none"
+                        aria-hidden="true"
+                      >
+                        {String((index % 3) + 1).padStart(2, '0')}
+                      </span>
+                    </div>
+
+                    <h3 className="font-playfair text-xl font-semibold text-white mb-3 relative z-10">
+                      {service.title}
+                    </h3>
+
+                    <p className="text-slate-400 text-sm leading-relaxed mb-6 relative z-10 flex-grow">
+                      {service.description}
+                    </p>
+
+                    <ul className="space-y-2 relative z-10 mt-auto" aria-label={`Fitur ${service.title}`}>
+                      {service.features.map((feat) => (
+                        <li key={feat} className="flex items-center gap-2.5 text-xs text-slate-300">
+                          <span
+                            className="flex-shrink-0 w-1 h-1 rounded-full bg-gold-DEFAULT"
+                            aria-hidden="true"
+                          />
+                          {feat}
+                        </li>
+                      ))}
+                    </ul>
+
+                    {/* Bottom gold line */}
+                    <div
+                      className="absolute bottom-0 left-0 right-0 h-px scale-x-0 group-hover:scale-x-100
+                                 transition-transform duration-500 ease-out"
+                      style={{ background: 'linear-gradient(90deg, transparent, #D4AF37, transparent)' }}
                       aria-hidden="true"
                     />
-                  </div>
-                  {/* Number watermark */}
-                  <span
-                    className="absolute -top-2 -right-2 font-playfair text-5xl font-bold
-                               text-white/5 select-none leading-none"
-                    aria-hidden="true"
-                  >
-                    {String(index + 1).padStart(2, '0')}
-                  </span>
-                </div>
-
-                <h3 className="font-playfair text-xl font-semibold text-white mb-3 relative z-10">
-                  {service.title}
-                </h3>
-
-                <p className="text-slate-400 text-sm leading-relaxed mb-6 relative z-10">
-                  {service.description}
-                </p>
-
-                <ul className="space-y-2 relative z-10" aria-label={`Fitur ${service.title}`}>
-                  {service.features.map((feat) => (
-                    <li key={feat} className="flex items-center gap-2.5 text-xs text-slate-300">
-                      <span
-                        className="flex-shrink-0 w-1 h-1 rounded-full bg-gold-DEFAULT"
-                        aria-hidden="true"
-                      />
-                      {feat}
-                    </li>
-                  ))}
-                </ul>
-
-                {/* Bottom gold line */}
-                <div
-                  className="absolute bottom-0 left-0 right-0 h-px scale-x-0 group-hover:scale-x-100
-                             transition-transform duration-500 ease-out"
-                  style={{ background: 'linear-gradient(90deg, transparent, #D4AF37, transparent)' }}
-                  aria-hidden="true"
-                />
-              </motion.article>
-            );
-          })}
+                  </article>
+                </SwiperSlide>
+              );
+            })}
+          </Swiper>
         </motion.div>
       </div>
     </section>

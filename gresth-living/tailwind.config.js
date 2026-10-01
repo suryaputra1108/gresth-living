@@ -49,6 +49,7 @@ export default {
       },
       backgroundImage: {
         'gold-gradient': 'linear-gradient(135deg,#9A7A30 0%,#C9A84C 45%,#E8C96A 70%,#C9A84C 100%)',
+        'silver-gradient': 'linear-gradient(135deg,#8C8C8C 0%,#D1D1D1 45%,#FFFFFF 70%,#A6A6A6 100%)',
         'dark-gradient': 'linear-gradient(180deg,#0D0D0D 0%,#141414 100%)',
       },
     },

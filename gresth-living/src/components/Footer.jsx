@@ -51,13 +51,12 @@ export default function Footer() {
 
           {/* Layanan */}
           <nav aria-label="Link Layanan">
-            <h3 className="font-playfair text-sm font-semibold text-white mb-5">Layanan</h3>
+            <h3 className="font-playfair text-lg font-bold text-white mb-5">Layanan</h3>
             <ul className="space-y-3">
               {FOOTER_LINKS.layanan.map(l => (
                 <li key={l.label}>
                   <Link to={l.to}
                     className="text-white/50 text-sm hover:text-gold-DEFAULT transition-colors duration-300 flex items-center gap-2 group">
-                    <span className="w-3 h-px bg-white/20 group-hover:w-5 group-hover:bg-gold-DEFAULT transition-all duration-300" aria-hidden="true" />
                     {l.label}
                   </Link>
                 </li>
@@ -67,13 +66,12 @@ export default function Footer() {
 
           {/* Info */}
           <nav aria-label="Link Informasi">
-            <h3 className="font-playfair text-sm font-semibold text-white mb-5">Informasi</h3>
+            <h3 className="font-playfair text-lg font-bold text-white mb-5">Informasi</h3>
             <ul className="space-y-3">
               {FOOTER_LINKS.info.map(l => (
                 <li key={l.label}>
                   <Link to={l.to}
                     className="text-white/50 text-sm hover:text-gold-DEFAULT transition-colors duration-300 flex items-center gap-2 group">
-                    <span className="w-3 h-px bg-white/20 group-hover:w-5 group-hover:bg-gold-DEFAULT transition-all duration-300" aria-hidden="true" />
                     {l.label}
                   </Link>
                 </li>
@@ -83,7 +81,7 @@ export default function Footer() {
 
           {/* Kontak + Maps */}
           <div>
-            <h3 className="font-playfair text-sm font-semibold text-white mb-5">Hubungi Kami</h3>
+            <h3 className="font-playfair text-lg font-bold text-white mb-5">Hubungi Kami</h3>
             <address className="not-italic space-y-4 text-white/50 text-sm mb-5">
               <a href="https://wa.me/6281234567890" target="_blank" rel="noopener noreferrer"
                 className="flex items-start gap-3 hover:text-gold-DEFAULT transition-colors group">

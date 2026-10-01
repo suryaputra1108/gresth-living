@@ -54,7 +54,7 @@ export default function Navbar() {
               alt="Logo Gresth Living"
               className={`w-auto object-contain transition-all duration-300 group-hover:scale-105 ${scrolled ? 'h-9 md:h-11' : 'h-12 md:h-14'}`}
             />
-            <span className={`absolute left-1/2 -translate-x-1/2 md:static md:translate-x-0 font-playfair font-bold uppercase tracking-widest bg-clip-text text-transparent bg-gold-gradient transition-all duration-300 ${scrolled ? 'text-lg md:text-xl' : 'text-xl md:text-2xl'}`}>
+            <span className={`absolute left-1/2 -translate-x-1/2 md:static md:translate-x-0 font-playfair font-bold uppercase tracking-widest silver-text transition-all duration-300 ${scrolled ? 'text-sm md:text-xl' : 'text-base md:text-2xl whitespace-nowrap'}`}>
               Gresth Living
             </span>
           </NavLink>

@@ -57,11 +57,11 @@ export default function HeroSection() {
           {/* H1 */}
           <motion.h1
             variants={fadeInUp}
-            className="font-playfair text-4xl sm:text-5xl md:text-6xl lg:text-[4.2rem] font-extrabold tracking-tight
-                       leading-tight text-white text-balance drop-shadow-2xl"
+            className="font-playfair text-2xl sm:text-4xl md:text-5xl lg:text-[4.2rem] font-extrabold tracking-tight
+                       leading-[1.3] sm:leading-tight text-white drop-shadow-2xl"
             style={{ textShadow: '0 4px 15px rgba(0,0,0,0.7)' }}
           >
-            Wujudkan Kemewahan{' '}
+            Wujudkan Kemewahan <br className="block sm:hidden" />
             <motion.span
               className="gold-text inline-block"
               animate={{ 
@@ -71,7 +71,7 @@ export default function HeroSection() {
               transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
             >
               Interior Klasik
-            </motion.span>
+            </motion.span>{' '}
             <br className="hidden sm:block" />
             di Hunian Anda
           </motion.h1>

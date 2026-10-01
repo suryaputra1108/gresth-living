@@ -6,6 +6,12 @@ import HeroSection from '../components/HeroSection';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
 import { fadeInUp, fadeInLeft, fadeInRight, fadeIn, staggerContainer, scaleIn } from '../utils/animations';
 
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { EffectCoverflow, Pagination, Autoplay } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/effect-coverflow';
+import 'swiper/css/pagination';
+
 /* ── Animated counter ── */
 function CountUp({ to, suffix = '', duration = 2 }) {
   const ref = useRef(null);
@@ -129,11 +135,11 @@ function BrandIntro() {
             initial={{ opacity: 0, y: 20 }}
             animate={vis ? { opacity: 1, y: 0 } : {}}
             transition={{ delay: 0.6, duration: 0.6 }}
-            className="absolute -bottom-6 right-6 p-6 shadow-card-hover"
+            className="absolute -bottom-6 right-2 sm:right-6 w-32 h-32 sm:w-36 sm:h-36 rounded-full flex flex-col items-center justify-center shadow-card-hover text-center"
             style={{ background: '#0D0D0D', border: '1px solid rgba(201,168,76,0.30)' }}
           >
-            <p className="font-playfair text-3xl font-bold gold-text"><CountUp to={150} suffix="+" /></p>
-            <p className="text-xs uppercase tracking-widest text-white/50 mt-1">Proyek<br />Selesai</p>
+            <p className="font-playfair text-2xl sm:text-3xl font-bold gold-text"><CountUp to={150} suffix="+" /></p>
+            <p className="text-[10px] sm:text-xs uppercase tracking-widest text-white/50 mt-1">Proyek<br />Selesai</p>
           </motion.div>
         </motion.div>
 
@@ -228,24 +234,65 @@ function ServicesPreview() {
           <motion.div variants={fadeInUp} className="divider-gold mx-auto mt-5" />
         </motion.div>
 
-        <motion.div variants={staggerContainer} initial="hidden" animate={vis ? 'visible' : 'hidden'}
-          className="grid grid-cols-1 md:grid-cols-3 gap-px" style={{ background: 'rgba(201,168,76,0.12)' }}>
-          {SERVICES.map((s, i) => {
-            const Icon = s.icon;
-            return (
-              <motion.div key={s.title} variants={fadeInUp} className="service-card group p-10">
-                <div className="w-12 h-12 flex items-center justify-center mb-8 border border-gold-DEFAULT/30 group-hover:border-gold-DEFAULT transition-colors">
-                  <Icon size={22} className="text-gold-DEFAULT" aria-hidden="true" />
-                </div>
-                <h3 className="font-playfair text-xl font-bold text-white mb-3">{s.title}</h3>
-                <p className="text-white/50 text-sm leading-relaxed mb-8">{s.desc}</p>
-                <Link to={s.to}
-                  className="inline-flex items-center gap-2 text-[10px] font-semibold text-gold-DEFAULT uppercase tracking-widest hover:gap-3 transition-all duration-300">
-                  Selengkapnya <ArrowRight size={12} />
-                </Link>
-              </motion.div>
-            );
-          })}
+        <style>{`
+          .homepage-services-swiper .swiper-pagination-bullet {
+            background: rgba(255,255,255,0.3);
+            width: 8px;
+            height: 8px;
+            transition: all 0.3s ease;
+          }
+          .homepage-services-swiper .swiper-pagination-bullet-active {
+            background: #C9A84C;
+            width: 24px;
+            border-radius: 4px;
+          }
+          .homepage-services-swiper {
+            padding-bottom: 50px !important;
+            padding-top: 20px !important;
+          }
+        `}</style>
+        
+        <motion.div variants={fadeIn} initial="hidden" animate={vis ? 'visible' : 'hidden'} className="w-full">
+          <Swiper
+            effect={'coverflow'}
+            grabCursor={true}
+            centeredSlides={true}
+            slidesPerView={'auto'}
+            loop={true}
+            autoplay={{
+              delay: 3500,
+              disableOnInteraction: false,
+            }}
+            coverflowEffect={{
+              rotate: 15,
+              stretch: 0,
+              depth: 150,
+              modifier: 1,
+              slideShadows: true,
+            }}
+            pagination={{ clickable: true }}
+            modules={[EffectCoverflow, Pagination, Autoplay]}
+            className="homepage-services-swiper w-full"
+          >
+            {[...SERVICES, ...SERVICES].map((s, i) => {
+              const Icon = s.icon;
+              return (
+                <SwiperSlide key={`${s.title}-${i}`} className="w-[320px] sm:w-[380px]">
+                  <div className="service-card group p-10 h-full flex flex-col mx-2" style={{ background: '#141414', border: '1px solid rgba(201,168,76,0.15)' }}>
+                    <div className="w-12 h-12 flex items-center justify-center mb-8 border border-gold-DEFAULT/30 group-hover:border-gold-DEFAULT transition-colors">
+                      <Icon size={22} className="text-gold-DEFAULT" aria-hidden="true" />
+                    </div>
+                    <h3 className="font-playfair text-xl font-bold text-white mb-3">{s.title}</h3>
+                    <p className="text-white/50 text-sm leading-relaxed mb-8 flex-grow">{s.desc}</p>
+                    <Link to={s.to}
+                      className="inline-flex items-center gap-2 text-[10px] font-semibold text-gold-DEFAULT uppercase tracking-widest hover:gap-3 transition-all duration-300 mt-auto">
+                      Selengkapnya <ArrowRight size={12} />
+                    </Link>
+                  </div>
+                </SwiperSlide>
+              );
+            })}
+          </Swiper>
         </motion.div>
 
         <motion.div variants={fadeInUp} initial="hidden" animate={vis ? 'visible' : 'hidden'}
