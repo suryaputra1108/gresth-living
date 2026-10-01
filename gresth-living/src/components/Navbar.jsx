@@ -7,7 +7,7 @@ import { useLanguage } from '../context/LanguageContext';
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  const { lang, toggleLang } = useLanguage();
+  const { lang, changeLang } = useLanguage();
   const location = useLocation();
 
   const navLinks = [
@@ -99,21 +99,29 @@ export default function Navbar() {
           <div className="hidden md:flex items-center gap-4">
             <NavLink
               to="/konsultasi"
-              className="btn-gold text-[10px] py-2.5 px-5"
+              className="btn-gold text-[10px] py-2.5 px-5 mr-2"
               aria-label={lang === 'id' ? "Mulai Konsultasi" : "Start Consultation"}
             >
               <span>{lang === 'id' ? 'Mulai Konsultasi' : 'Start Consultation'}</span>
             </NavLink>
-            <motion.button
-              whileTap={{ scale: 0.8 }}
-              animate={{ rotateY: lang === 'id' ? 0 : 360 }}
-              transition={{ duration: 0.5, type: 'spring' }}
-              onClick={toggleLang}
-              className="w-9 h-9 rounded-full flex items-center justify-center text-[18px] bg-white/10 border border-white/15 hover:bg-white/20 hover:border-gold-DEFAULT transition-colors"
-              title={lang === 'id' ? 'Switch to English' : 'Ubah ke Bahasa Indonesia'}
-            >
-              {lang === 'id' ? '🇮🇩' : '🇺🇸'}
-            </motion.button>
+            <div className="flex items-center gap-2 bg-white/5 rounded-full p-1 border border-white/10">
+              <motion.button
+                whileTap={{ scale: 0.9 }}
+                onClick={() => changeLang('id')}
+                className={`w-7 h-7 rounded-full flex items-center justify-center text-[14px] transition-colors ${lang === 'id' ? 'bg-gold-DEFAULT text-white' : 'bg-transparent text-white/50 hover:text-white'}`}
+                title="Bahasa Indonesia"
+              >
+                🇮🇩
+              </motion.button>
+              <motion.button
+                whileTap={{ scale: 0.9 }}
+                onClick={() => changeLang('en')}
+                className={`w-7 h-7 rounded-full flex items-center justify-center text-[14px] transition-colors ${lang === 'en' ? 'bg-gold-DEFAULT text-white' : 'bg-transparent text-white/50 hover:text-white'}`}
+                title="English"
+              >
+                🇺🇸
+              </motion.button>
+            </div>
           </div>
 
           {/* ── Hamburger ── */}
@@ -194,20 +202,28 @@ export default function Navbar() {
                   </motion.div>
                 ))}
                 
-                {/* Language Toggle Below Konsultasi */}
+                {/* Language Toggles Below Konsultasi */}
                 <motion.div
                   initial={{ opacity: 0, x: 20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: navLinks.length * 0.06 + 0.1 }}
-                  className="mt-4"
+                  className="mt-4 flex items-center gap-3"
                 >
                   <motion.button
                     whileTap={{ scale: 0.9 }}
-                    onClick={toggleLang}
-                    className="w-10 h-10 rounded-full flex items-center justify-center text-[20px] bg-white/5 border border-white/10 shadow-sm hover:bg-white/10 hover:border-gold-DEFAULT transition-all overflow-hidden"
-                    title={lang === 'id' ? 'Switch to English' : 'Ubah ke Bahasa Indonesia'}
+                    onClick={() => { changeLang('id'); setMenuOpen(false); }}
+                    className={`w-10 h-10 rounded-full flex items-center justify-center text-[20px] shadow-sm transition-all overflow-hidden ${lang === 'id' ? 'bg-white/20 border-gold-DEFAULT border-2' : 'bg-white/5 border-white/10 hover:bg-white/10'}`}
+                    title="Bahasa Indonesia"
                   >
-                    {lang === 'id' ? '🇮🇩' : '🇺🇸'}
+                    🇮🇩
+                  </motion.button>
+                  <motion.button
+                    whileTap={{ scale: 0.9 }}
+                    onClick={() => { changeLang('en'); setMenuOpen(false); }}
+                    className={`w-10 h-10 rounded-full flex items-center justify-center text-[20px] shadow-sm transition-all overflow-hidden ${lang === 'en' ? 'bg-white/20 border-gold-DEFAULT border-2' : 'bg-white/5 border-white/10 hover:bg-white/10'}`}
+                    title="English"
+                  >
+                    🇺🇸
                   </motion.button>
                 </motion.div>
               </nav>

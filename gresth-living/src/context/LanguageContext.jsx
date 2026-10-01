@@ -16,8 +16,13 @@ export function LanguageProvider({ children }) {
     localStorage.setItem('gresth_lang', newLang);
   };
 
+  const changeLang = (newLang) => {
+    setLang(newLang);
+    localStorage.setItem('gresth_lang', newLang);
+  };
+
   return (
-    <LanguageContext.Provider value={{ lang, toggleLang }}>
+    <LanguageContext.Provider value={{ lang, toggleLang, changeLang }}>
       {children}
     </LanguageContext.Provider>
   );
