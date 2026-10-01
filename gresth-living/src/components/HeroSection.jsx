@@ -3,6 +3,7 @@ import { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { ChevronRight } from 'lucide-react';
 import { fadeInUp, fadeIn, staggerContainer } from '../utils/animations';
+import { useLanguage } from '../context/LanguageContext';
 
 const HERO_IMAGE = '/hero-image.jpg';
 
@@ -22,6 +23,8 @@ function CountUp({ to, suffix = '', duration = 2 }) {
 }
 
 export default function HeroSection() {
+  const { lang } = useLanguage();
+
   return (
     <section
       id="hero"
@@ -61,7 +64,7 @@ export default function HeroSection() {
                        leading-[1.3] sm:leading-tight text-white drop-shadow-2xl"
             style={{ textShadow: '0 4px 15px rgba(0,0,0,0.7)' }}
           >
-            Wujudkan Kemewahan <br className="block sm:hidden" />
+            {lang === 'id' ? 'Wujudkan Kemewahan' : 'Realize the Luxury of'} <br className="block sm:hidden" />
             <motion.span
               className="gold-text inline-block"
               animate={{ 
@@ -70,10 +73,10 @@ export default function HeroSection() {
               }}
               transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
             >
-              Interior Klasik
+              {lang === 'id' ? 'Interior Klasik' : 'Classic Interiors'}
             </motion.span>{' '}
             <br className="hidden sm:block" />
-            di Hunian Anda
+            {lang === 'id' ? 'di Hunian Anda' : 'in Your Home'}
           </motion.h1>
 
           <motion.div variants={fadeInUp} className="divider-gold mx-auto drop-shadow-md" />
@@ -84,8 +87,9 @@ export default function HeroSection() {
             className="max-w-2xl text-base sm:text-lg leading-relaxed font-light drop-shadow-md"
             style={{ color: 'rgba(255,255,255,0.80)', textShadow: '0 1px 4px rgba(0,0,0,0.6)' }}
           >
-            Spesialis jasa desain, eksekusi instalasi, dan custom furniture bergaya klasik
-            elegan di Jabodetabek. Proporsi sempurna, material premium.
+            {lang === 'id' 
+              ? 'Spesialis jasa desain, eksekusi instalasi, dan custom furniture bergaya klasik elegan di Jabodetabek. Proporsi sempurna, material premium.'
+              : 'Specialists in design, fit-out execution, and elegant classic custom furniture in Jabodetabek. Perfect proportions, premium materials.'}
           </motion.p>
 
           {/* CTAs */}
@@ -94,10 +98,10 @@ export default function HeroSection() {
             className="flex flex-col sm:flex-row items-center gap-4 mt-1"
           >
             <Link to="/konsultasi" className="btn-gold">
-              <span>Konsultasi Gratis</span>
+              <span>{lang === 'id' ? 'Konsultasi Gratis' : 'Free Consultation'}</span>
             </Link>
             <Link to="/portofolio" className="btn-outline">
-              Lihat Portofolio
+              {lang === 'id' ? 'Lihat Portofolio' : 'View Portfolio'}
             </Link>
           </motion.div>
 
@@ -107,9 +111,9 @@ export default function HeroSection() {
             className="flex flex-wrap justify-center gap-10 mt-6 pt-6 border-t border-white/10"
           >
             {[
-              { to: 150, suffix: '+', label: 'Proyek Selesai' },
-              { to: 14,   suffix: '+', label: 'Tahun Pengalaman' },
-              { to: 98,  suffix: '%', label: 'Klien Puas' },
+              { to: 150, suffix: '+', label: lang === 'id' ? 'Proyek Selesai' : 'Completed Projects' },
+              { to: 14,   suffix: '+', label: lang === 'id' ? 'Tahun Pengalaman' : 'Years Experience' },
+              { to: 98,  suffix: '%', label: lang === 'id' ? 'Klien Puas' : 'Satisfied Clients' },
             ].map((s) => (
               <div key={s.label} className="text-center">
                 <p className="font-playfair text-3xl gold-text font-bold">

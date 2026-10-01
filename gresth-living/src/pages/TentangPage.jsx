@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { ShieldCheck, ChevronRight } from 'lucide-react';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
 import { fadeInUp, fadeInLeft, fadeInRight, fadeIn, staggerContainer, scaleIn } from '../utils/animations';
+import { useLanguage } from '../context/LanguageContext';
 
 const ABOUT_IMAGE = 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=80&w=900&auto=format&fit=crop';
 
@@ -22,19 +23,22 @@ function CountUp({ to, suffix = '', duration = 2 }) {
   return <motion.span ref={ref}>{display}</motion.span>;
 }
 
-const MATERIALS = [
-  { name: 'Kayu Sonokeling', img: '/kayu-sonokeling.png' },
-  { name: 'Kayu Jati',       img: '/kayu-jati.png' },
-  { name: 'Logam',           img: '/logam.png' },
-  { name: 'Marmer Hitam',    img: '/marmer-hitam.png' },
-  { name: 'Marmer Putih',    img: '/marmer-putih.png' },
-  { name: 'Cat Duco',        img: '/cat-duco.png' },
+const getMaterials = (lang) => [
+  { name: lang === 'id' ? 'Kayu Sonokeling' : 'Sonokeling Wood', img: '/kayu-sonokeling.png' },
+  { name: lang === 'id' ? 'Kayu Jati' : 'Teak Wood',       img: '/kayu-jati.png' },
+  { name: lang === 'id' ? 'Logam' : 'Metal',           img: '/logam.png' },
+  { name: lang === 'id' ? 'Marmer Hitam' : 'Black Marble',    img: '/marmer-hitam.png' },
+  { name: lang === 'id' ? 'Marmer Putih' : 'White Marble',    img: '/marmer-putih.png' },
+  { name: lang === 'id' ? 'Cat Duco' : 'Duco Paint',        img: '/cat-duco.png' },
 ];
 
 export default function TentangPage() {
   const [s1Ref, s1Vis] = useScrollAnimation({ threshold: 0.1 });
   const [s2Ref, s2Vis] = useScrollAnimation({ threshold: 0.1 });
   const [s3Ref, s3Vis] = useScrollAnimation({ threshold: 0.1 });
+  const { lang } = useLanguage();
+
+  const materialsData = getMaterials(lang);
 
   return (
     <main style={{ background: '#0D0D0D' }}>
@@ -42,15 +46,15 @@ export default function TentangPage() {
       <section className="pt-36 pb-20 px-6" style={{ background: '#141414' }} aria-labelledby="tentang-h1">
         <div className="max-w-4xl mx-auto text-center">
           <motion.div initial={{ opacity:0,y:20 }} animate={{ opacity:1,y:0 }} transition={{ duration:0.7 }}>
-            <div className="section-label justify-center"><span>Profil Kami</span></div>
+            <div className="section-label justify-center"><span>{lang === 'id' ? 'Profil Kami' : 'Our Profile'}</span></div>
             <h1 id="tentang-h1" className="font-playfair text-2xl sm:text-3xl md:text-4xl font-bold text-white mt-2 leading-tight">
-              Perusahaan Interior <span className="gold-text">Spesialis Moderen Klasik</span> Sejak 2012
+              {lang === 'id' ? 'Perusahaan Interior' : 'Interior Company'} <span className="gold-text">{lang === 'id' ? 'Spesialis Moderen Klasik' : 'Modern Classic Specialist'}</span> {lang === 'id' ? 'Sejak 2012' : 'Since 2012'}
             </h1>
             <div className="divider-gold mx-auto mt-6" />
             <p className="mt-6 leading-relaxed max-w-3xl mx-auto text-sm sm:text-base" style={{ color: 'rgba(255,255,255,0.60)' }}>
-              Gresth adalah perusahaan spesialis dalam desain interior modern klasik sejak tahun 2012. 
-              Kami selalu berkomitmen untuk berinovasi, meningkatkan kualitas produk, dan terus memperbarui pelayanan kami. 
-              Dengan dedikasi terhadap desain yang indah dan berkualitas, kami siap membantu mewujudkan ruang impian Anda.
+              {lang === 'id'
+                ? 'Gresth adalah perusahaan spesialis dalam desain interior modern klasik sejak tahun 2012. Kami selalu berkomitmen untuk berinovasi, meningkatkan kualitas produk, dan terus memperbarui pelayanan kami. Dengan dedikasi terhadap desain yang indah dan berkualitas, kami siap membantu mewujudkan ruang impian Anda.'
+                : 'Gresth is a company specializing in modern classic interior design since 2012. We are always committed to innovating, improving product quality, and continuously updating our services. With a dedication to beautiful and high-quality design, we are ready to help realize your dream space.'}
             </p>
           </motion.div>
         </div>
@@ -74,7 +78,7 @@ export default function TentangPage() {
                 <CountUp to={2012} duration={2.5} />
               </p>
               <p className="text-xs tracking-widest uppercase mt-1 text-charcoal/50">
-                Tahun Berdiri
+                {lang === 'id' ? 'Tahun Berdiri' : 'Established'}
               </p>
             </motion.div>
             {/* Corner accents */}
@@ -85,35 +89,40 @@ export default function TentangPage() {
           </motion.div>
 
           <motion.div variants={staggerContainer} initial="hidden" animate={s1Vis ? 'visible' : 'hidden'}>
-            <motion.div variants={fadeIn} className="section-label-dark"><span>Filosofi Kami</span></motion.div>
+            <motion.div variants={fadeIn} className="section-label-dark"><span>{lang === 'id' ? 'Filosofi Kami' : 'Our Philosophy'}</span></motion.div>
             <motion.h2 variants={fadeInUp} className="font-playfair text-2xl sm:text-3xl md:text-4xl font-bold text-charcoal mt-2 leading-tight">
               WITNESS THE <span className="gold-text uppercase">Parenial Beauty</span>
             </motion.h2>
             <motion.div variants={fadeInUp} className="divider-gold mt-5 mb-6" />
             
             <motion.p variants={fadeInUp} className="text-sm sm:text-base leading-relaxed mb-4 text-charcoal/70">
-              Menyaksikan atau membuktikan kecantikan yang abadi, begitulah makna dari <strong>Witness the Parenial Beauty</strong>. 
-              Filosofinya lebih kepada tujuan kami membuat karya-karya yang selain difungsikan sebagaimana fungsi ruang itu sendiri, 
-              tetapi juga memiliki value lain yang estetik atau cantik disetiap detailnya yang dapat dinikmati sampai kapanpun dan tak lekang oleh waktu.
+              {lang === 'id'
+                ? <>Menyaksikan atau membuktikan kecantikan yang abadi, begitulah makna dari <strong>Witness the Parenial Beauty</strong>. Filosofinya lebih kepada tujuan kami membuat karya-karya yang selain difungsikan sebagaimana fungsi ruang itu sendiri, tetapi juga memiliki value lain yang estetik atau cantik disetiap detailnya yang dapat dinikmati sampai kapanpun dan tak lekang oleh waktu.</>
+                : <>Witnessing or proving eternal beauty, that is the meaning of <strong>Witness the Parenial Beauty</strong>. The philosophy is more about our goal to create works that, besides functioning as the space itself, also have another value that is aesthetic or beautiful in every detail that can be enjoyed at any time and is timeless.</>}
             </motion.p>
             
             <motion.p variants={fadeInUp} className="text-sm leading-relaxed mb-4 text-charcoal/70">
-              Slogan ini muncul sebagai visi, setelah kami mendapatkan kenyamanan dalam berkarya di <em>home decor</em> dengan genre <em>modern classic</em>.
+              {lang === 'id'
+                ? <>Slogan ini muncul sebagai visi, setelah kami mendapatkan kenyamanan dalam berkarya di <em>home decor</em> dengan genre <em>modern classic</em>.</>
+                : <>This slogan emerged as a vision, after we found comfort in creating <em>home decor</em> with the <em>modern classic</em> genre.</>}
             </motion.p>
 
             <motion.p variants={fadeInUp} className="text-sm leading-relaxed mb-8 text-charcoal/70">
-              Menyaksikan keindahan yang abadi sejalan dengan konsep Gresth Living, bahwa kami selalu ingin membuat setiap karya menjadi sebuah keindahan yang tidak lekang oleh jaman. 
-              Maka Gresth Living memilih tema <em>modern classic</em> yang memang dari dulu hingga sekarang masih tetap eksis dan banyak disukai orang dari lintas generasi.
+              {lang === 'id'
+                ? <>Menyaksikan keindahan yang abadi sejalan dengan konsep Gresth Living, bahwa kami selalu ingin membuat setiap karya menjadi sebuah keindahan yang tidak lekang oleh jaman. Maka Gresth Living memilih tema <em>modern classic</em> yang memang dari dulu hingga sekarang masih tetap eksis dan banyak disukai orang dari lintas generasi.</>
+                : <>Witnessing eternal beauty is in line with the concept of Gresth Living, that we always want to make every work a beauty that is not eroded by time. Therefore, Gresth Living chooses the <em>modern classic</em> theme which has always existed and is liked by many people across generations.</>}
             </motion.p>
 
             <motion.blockquote variants={fadeInUp} className="pl-6 py-2 border-l-2 mb-8" style={{ borderColor: '#C9A84C' }}>
               <p className="font-playfair text-lg text-charcoal/90">
-                "Witness the parenial beauty yakni menyaksikan atau membuktikan kecantikan yang abadi."
+                {lang === 'id'
+                  ? '"Witness the parenial beauty yakni menyaksikan atau membuktikan kecantikan yang abadi."'
+                  : '"Witness the parenial beauty means witnessing or proving eternal beauty."'}
               </p>
             </motion.blockquote>
             
             <motion.div variants={fadeInUp}>
-              <Link to="/konsultasi" className="btn-outline-gold"><span>Wujudkan Ruang Impian</span><ChevronRight size={15}/></Link>
+              <Link to="/konsultasi" className="btn-outline-gold"><span>{lang === 'id' ? 'Wujudkan Ruang Impian' : 'Realize Your Dream Space'}</span><ChevronRight size={15}/></Link>
             </motion.div>
           </motion.div>
         </div>
@@ -123,21 +132,21 @@ export default function TentangPage() {
       <section ref={s2Ref} className="py-24 px-6 section-dark-2" aria-labelledby="materials-heading">
         <div className="max-w-7xl mx-auto">
           <motion.div variants={staggerContainer} initial="hidden" animate={s2Vis ? 'visible' : 'hidden'} className="text-center mb-16">
-            <motion.div variants={fadeIn} className="section-label justify-center"><span>Komposisi Karya</span></motion.div>
+            <motion.div variants={fadeIn} className="section-label justify-center"><span>{lang === 'id' ? 'Komposisi Karya' : 'Work Composition'}</span></motion.div>
             <motion.h2 id="materials-heading" variants={fadeInUp} className="font-playfair text-2xl sm:text-3xl md:text-4xl font-bold text-white mt-2">
-              Ragam <span className="gold-text">Material</span>
+              {lang === 'id' ? 'Ragam' : 'Variety of'} <span className="gold-text">{lang === 'id' ? 'Material' : 'Materials'}</span>
             </motion.h2>
             <motion.div variants={fadeInUp} className="divider-gold mx-auto mt-5" />
             <motion.p variants={fadeInUp} className="mt-6 text-sm leading-relaxed max-w-3xl mx-auto text-white/60">
-              Dalam perjalanan melalui dunia desain interior, kita menemui beragam material yang menjadi kunci keberhasilan 
-              untuk menciptakan ruang yang indah dan fungsional. Mulai dari kehangatan kayu yang memberikan sentuhan alami dan klasik, 
-              hingga kemewahan marmer yang melambangkan keanggunan, ragam material interior membawa karakter dan nuansa unik.
+              {lang === 'id'
+                ? 'Dalam perjalanan melalui dunia desain interior, kita menemui beragam material yang menjadi kunci keberhasilan untuk menciptakan ruang yang indah dan fungsional. Mulai dari kehangatan kayu yang memberikan sentuhan alami dan klasik, hingga kemewahan marmer yang melambangkan keanggunan, ragam material interior membawa karakter dan nuansa unik.'
+                : 'In our journey through the world of interior design, we encounter a variety of materials that are the key to success in creating beautiful and functional spaces. From the warmth of wood that provides a natural and classic touch, to the luxury of marble that symbolizes elegance, the variety of interior materials brings unique character and nuances.'}
             </motion.p>
           </motion.div>
 
           <motion.div variants={staggerContainer} initial="hidden" animate={s2Vis ? 'visible' : 'hidden'}
             className="grid grid-cols-2 md:grid-cols-3 gap-8 md:gap-12 max-w-5xl mx-auto">
-            {MATERIALS.map((m, i) => (
+            {materialsData.map((m, i) => (
               <motion.div key={m.name} variants={scaleIn} className="flex flex-col items-center">
                 <div className="w-32 h-32 md:w-48 md:h-48 rounded-full overflow-hidden mb-5 border-2 hover:scale-105 transition-transform duration-500"
                   style={{ borderColor: 'rgba(201,168,76,0.30)' }}>
@@ -160,14 +169,13 @@ export default function TentangPage() {
             </motion.div>
             
             <motion.h2 id="quality-heading" variants={fadeInUp} className="font-playfair text-2xl sm:text-3xl md:text-4xl font-bold text-charcoal mb-6 leading-tight uppercase tracking-widest">
-              Bahan Material 100% <span className="gold-text block sm:inline mt-2 sm:mt-0">Anti Rayap</span> & Berkualitas Tinggi
+              {lang === 'id' ? 'Bahan Material 100%' : '100%'} <span className="gold-text block sm:inline mt-2 sm:mt-0">{lang === 'id' ? 'Anti Rayap' : 'Termite-proof'}</span> {lang === 'id' ? '& Berkualitas Tinggi' : '& High Quality Materials'}
             </motion.h2>
             
             <motion.p variants={fadeInUp} className="text-sm sm:text-base leading-relaxed text-charcoal/70">
-              Komitmen kami untuk selalu menggunakan bahan material yang sepenuhnya anti rayap dan memiliki kualitas tinggi. 
-              Bahan composite kayu dan PVC yang kami gunakan memiliki ketahanan yang luar biasa, bahkan bisa bertahan hingga puluhan tahun. 
-              Dengan ini, kami memastikan produk kami tidak hanya tahan terhadap gangguan rayap, tetapi juga memberikan kualitas yang prima 
-              dalam jangka waktu yang panjang.
+              {lang === 'id'
+                ? 'Komitmen kami untuk selalu menggunakan bahan material yang sepenuhnya anti rayap dan memiliki kualitas tinggi. Bahan composite kayu dan PVC yang kami gunakan memiliki ketahanan yang luar biasa, bahkan bisa bertahan hingga puluhan tahun. Dengan ini, kami memastikan produk kami tidak hanya tahan terhadap gangguan rayap, tetapi juga memberikan kualitas yang prima dalam jangka waktu yang panjang.'
+                : 'Our commitment is to always use materials that are completely termite-proof and have high quality. The wood composite and PVC materials we use have extraordinary durability, even lasting up to decades. With this, we ensure our products are not only resistant to termite interference, but also provide excellent quality over a long period of time.'}
             </motion.p>
           </motion.div>
         </div>
@@ -177,14 +185,13 @@ export default function TentangPage() {
         <div className="max-w-4xl mx-auto text-center">
           <motion.div variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-10%" }}>
             <motion.h2 id="team-heading" variants={fadeInUp} className="font-playfair text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-6 leading-tight uppercase tracking-widest">
-              Pekerja <span className="gold-text">Yang Ahli</span> Di Bidangnya,<br />Gaya Yang Unik
+              {lang === 'id' ? 'Pekerja' : 'Workers'} <span className="gold-text">{lang === 'id' ? 'Yang Ahli' : 'Who Are Experts'}</span> {lang === 'id' ? 'Di Bidangnya,' : 'In Their Field,'}<br />{lang === 'id' ? 'Gaya Yang Unik' : 'A Unique Style'}
             </motion.h2>
             <motion.div variants={fadeInUp} className="divider-gold mx-auto mb-6" />
             <motion.p variants={fadeInUp} className="text-sm sm:text-base leading-relaxed text-white/60">
-              Kami bangga memiliki tim pekerja yang ahli dalam bidangnya, yang menghadirkan gaya unik dalam setiap proyek. 
-              Kami mengusung konsep modern klasik dengan sentuhan khas Indonesia, menggabungkan bahan-bahan berkualitas tinggi 
-              seperti kayu solid jati dan sonokeling. Hasilnya adalah kreasi yang memadukan keindahan estetika modern dengan kehangatan 
-              unsur tradisional, menciptakan desain yang istimewa dan tak terlupakan.
+              {lang === 'id'
+                ? 'Kami bangga memiliki tim pekerja yang ahli dalam bidangnya, yang menghadirkan gaya unik dalam setiap proyek. Kami mengusung konsep modern klasik dengan sentuhan khas Indonesia, menggabungkan bahan-bahan berkualitas tinggi seperti kayu solid jati dan sonokeling. Hasilnya adalah kreasi yang memadukan keindahan estetika modern dengan kehangatan unsur tradisional, menciptakan desain yang istimewa dan tak terlupakan.'
+                : 'We are proud to have a team of workers who are experts in their fields, bringing a unique style to every project. We carry the modern classic concept with a distinctive Indonesian touch, combining high-quality materials such as solid teak and sonokeling wood. The result is a creation that combines the beauty of modern aesthetics with the warmth of traditional elements, creating a special and unforgettable design.'}
             </motion.p>
           </motion.div>
         </div>

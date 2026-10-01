@@ -1,24 +1,26 @@
 import { Link } from 'react-router-dom';
 import { MessageCircle, Mail, MapPin, Instagram, Phone } from 'lucide-react';
-
-const year = new Date().getFullYear();
-
-const FOOTER_LINKS = {
-  layanan: [
-    { label: 'Desain Interior Klasik', to: '/layanan#desain' },
-    { label: 'Kontraktor Fit-Out',      to: '/layanan#kontraktor' },
-    { label: 'Custom Furniture',        to: '/layanan#furniture' },
-    { label: 'Konsultasi Gratis',       to: '/konsultasi' },
-  ],
-  info: [
-    { label: 'Beranda',          to: '/' },
-    { label: 'Tentang Kami',     to: '/tentang' },
-    { label: 'Portofolio',       to: '/portofolio' },
-    { label: 'Kebijakan Privasi',to: '#' },
-  ],
-};
+import { useLanguage } from '../context/LanguageContext';
 
 export default function Footer() {
+  const { lang } = useLanguage();
+  const year = new Date().getFullYear();
+
+  const FOOTER_LINKS = {
+    layanan: [
+      { label: lang === 'id' ? 'Desain Interior Klasik' : 'Classic Interior Design', to: '/layanan#desain' },
+      { label: lang === 'id' ? 'Kontraktor Fit-Out' : 'Fit-Out Contractor',      to: '/layanan#kontraktor' },
+      { label: 'Custom Furniture',        to: '/layanan#furniture' },
+      { label: lang === 'id' ? 'Konsultasi Gratis' : 'Free Consultation',       to: '/konsultasi' },
+    ],
+    info: [
+      { label: lang === 'id' ? 'Beranda' : 'Home',          to: '/' },
+      { label: lang === 'id' ? 'Tentang Kami' : 'About Us',     to: '/tentang' },
+      { label: lang === 'id' ? 'Portofolio' : 'Portfolio',       to: '/portofolio' },
+      { label: lang === 'id' ? 'Kebijakan Privasi' : 'Privacy Policy',to: '#' },
+    ],
+  };
+
   return (
     <footer
       className="bg-charcoal text-white pt-20 pb-8 px-6"
@@ -32,8 +34,9 @@ export default function Footer() {
           <div className="lg:col-span-1">
             <img src="/logo-white.png" alt="Logo Gresth Living" className="h-16 w-auto mb-5" />
             <p className="text-white/50 text-sm leading-relaxed mb-6">
-              Spesialis desain interior klasik, kontraktor fit-out, dan custom furniture premium
-              di Jabodetabek. Keindahan klasik yang timeless untuk hunian Anda.
+              {lang === 'id' 
+                ? 'Spesialis desain interior klasik, kontraktor fit-out, dan custom furniture premium di Jabodetabek. Keindahan klasik yang timeless untuk hunian Anda.' 
+                : 'Specialists in classic interior design, fit-out contractors, and premium custom furniture in Jabodetabek. Timeless classic beauty for your home.'}
             </p>
             <div className="flex gap-3" aria-label="Media sosial">
               {[
@@ -50,8 +53,8 @@ export default function Footer() {
           </div>
 
           {/* Layanan */}
-          <nav aria-label="Link Layanan">
-            <h3 className="font-playfair text-lg font-bold text-white mb-5">Layanan</h3>
+          <nav aria-label={lang === 'id' ? "Link Layanan" : "Service Links"}>
+            <h3 className="font-playfair text-lg font-bold text-white mb-5">{lang === 'id' ? 'Layanan' : 'Services'}</h3>
             <ul className="space-y-3">
               {FOOTER_LINKS.layanan.map(l => (
                 <li key={l.label}>
@@ -65,8 +68,8 @@ export default function Footer() {
           </nav>
 
           {/* Info */}
-          <nav aria-label="Link Informasi">
-            <h3 className="font-playfair text-lg font-bold text-white mb-5">Informasi</h3>
+          <nav aria-label={lang === 'id' ? "Link Informasi" : "Information Links"}>
+            <h3 className="font-playfair text-lg font-bold text-white mb-5">{lang === 'id' ? 'Informasi' : 'Information'}</h3>
             <ul className="space-y-3">
               {FOOTER_LINKS.info.map(l => (
                 <li key={l.label}>
@@ -81,7 +84,7 @@ export default function Footer() {
 
           {/* Kontak + Maps */}
           <div>
-            <h3 className="font-playfair text-lg font-bold text-white mb-5">Hubungi Kami</h3>
+            <h3 className="font-playfair text-lg font-bold text-white mb-5">{lang === 'id' ? 'Hubungi Kami' : 'Contact Us'}</h3>
             <address className="not-italic space-y-4 text-white/50 text-sm mb-5">
               <a href="https://wa.me/6281234567890" target="_blank" rel="noopener noreferrer"
                 className="flex items-start gap-3 hover:text-gold-DEFAULT transition-colors group">
@@ -120,18 +123,18 @@ export default function Footer() {
               target="_blank"
               rel="noopener noreferrer"
               className="mt-2 flex items-center gap-1.5 text-xs text-gold-DEFAULT/60 hover:text-gold-DEFAULT transition-colors"
-              aria-label="Buka di Google Maps"
+              aria-label={lang === 'id' ? "Buka di Google Maps" : "Open in Google Maps"}
             >
               <MapPin size={11} aria-hidden="true" />
-              Buka di Google Maps
+              {lang === 'id' ? 'Buka di Google Maps' : 'Open in Google Maps'}
             </a>
           </div>
         </div>
 
         {/* Bottom bar */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-white/10">
-          <p className="text-white/30 text-xs">© {year} <span className="text-white/50">Gresth Living</span>. Hak Cipta Dilindungi.</p>
-          <p className="text-white/20 text-xs">Desain Interior Klasik Premium — Jabodetabek</p>
+          <p className="text-white/30 text-xs">© {year} <span className="text-white/50">Gresth Living</span>. {lang === 'id' ? 'Hak Cipta Dilindungi.' : 'All Rights Reserved.'}</p>
+          <p className="text-white/20 text-xs">{lang === 'id' ? 'Desain Interior Klasik Premium — Jabodetabek' : 'Premium Classic Interior Design — Jabodetabek'}</p>
         </div>
       </div>
     </footer>

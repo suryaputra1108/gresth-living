@@ -4,47 +4,48 @@ import { Link } from 'react-router-dom';
 import { X, ChevronLeft, ChevronRight, MapPin, ArrowUpRight } from 'lucide-react';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
 import { fadeInUp, fadeIn, staggerContainer, scaleIn } from '../utils/animations';
+import { useLanguage } from '../context/LanguageContext';
 
 
-const PORTFOLIO = [
-  { id:1, title:'MRS. A', fullName:'Mrs. A Residence - American Classic', location:'Jakarta Selatan', area:'350 m2', cat:'Interior',
-    desc: 'Renovasi interior bergaya American Classic dengan kabinet custom sage green dan top table marmer premium. Memaksimalkan pencahayaan alami dan efisiensi ruang gerak secara elegan.',
+const getPortfolio = (lang) => [
+  { id:1, title:'MRS. A', fullName:'Mrs. A Residence - American Classic', location:'Jakarta Selatan', area:'350 m2', cat: lang === 'id' ? 'Interior' : 'Interior',
+    desc: lang === 'id' ? 'Renovasi interior bergaya American Classic dengan kabinet custom sage green dan top table marmer premium. Memaksimalkan pencahayaan alami dan efisiensi ruang gerak secara elegan.' : 'American Classic style interior renovation with custom sage green cabinets and premium marble top table. Maximizing natural lighting and spatial efficiency elegantly.',
     images: [
       'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=80&w=1200&auto=format&fit=crop',
       'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=1200&auto=format&fit=crop',
       'https://images.unsplash.com/photo-1598928506311-c55dedbfc1a2?q=80&w=1200&auto=format&fit=crop'
     ]
   },
-  { id:2, title:'MR. B', fullName:'Mr. B House - Royal Mansion', location:'Tangerang', area:'500 m2', cat:'Arsitektur',
-    desc: 'Desain arsitektur fasad klasik dengan pilar-pilar kokoh dan jendela melengkung. Dilengkapi dengan lanskap taman yang simetris untuk memperkuat kesan megah.',
+  { id:2, title:'MR. B', fullName:'Mr. B House - Royal Mansion', location:'Tangerang', area:'500 m2', cat: lang === 'id' ? 'Arsitektur' : 'Architecture',
+    desc: lang === 'id' ? 'Desain arsitektur fasad klasik dengan pilar-pilar kokoh dan jendela melengkung. Dilengkapi dengan lanskap taman yang simetris untuk memperkuat kesan megah.' : 'Classic facade architectural design with sturdy pillars and arched windows. Equipped with a symmetrical garden landscape to strengthen the majestic impression.',
     images: [
       'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=80&w=1200&auto=format&fit=crop',
       'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1200&auto=format&fit=crop'
     ]
   },
-  { id:3, title:'MRS. C', fullName:'Mrs. C Mansion - Classic Dining', location:'Bekasi', area:'420 m2', cat:'Interior',
-    desc: 'Ruang makan formal dengan lampu gantung kristal dan meja makan kayu mahoni berkapasitas 8 orang. Cocok untuk menjamu tamu kehormatan dalam suasana hangat.',
+  { id:3, title:'MRS. C', fullName:'Mrs. C Mansion - Classic Dining', location:'Bekasi', area:'420 m2', cat: lang === 'id' ? 'Interior' : 'Interior',
+    desc: lang === 'id' ? 'Ruang makan formal dengan lampu gantung kristal dan meja makan kayu mahoni berkapasitas 8 orang. Cocok untuk menjamu tamu kehormatan dalam suasana hangat.' : 'Formal dining room with crystal chandeliers and a mahogany wood dining table with an 8-person capacity. Suitable for entertaining guests of honor in a warm atmosphere.',
     images: [
       'https://images.unsplash.com/photo-1617806118233-18e1de247200?q=80&w=1200&auto=format&fit=crop',
       'https://images.unsplash.com/photo-1604578762246-41134e37f9cc?q=80&w=1200&auto=format&fit=crop'
     ]
   },
-  { id:4, title:'MR. D', fullName:'Mr. D Villa - Executive Concept', location:'Jakarta Pusat', area:'280 m2', cat:'Interior',
-    desc: 'Ruang kerja bernuansa kayu gelap dan kulit asli. Dilengkapi dengan built-in bookshelf klasik setinggi plafon yang memberikan aura maskulin dan profesional.',
+  { id:4, title:'MR. D', fullName:'Mr. D Villa - Executive Concept', location:'Jakarta Pusat', area:'280 m2', cat: lang === 'id' ? 'Interior' : 'Interior',
+    desc: lang === 'id' ? 'Ruang kerja bernuansa kayu gelap dan kulit asli. Dilengkapi dengan built-in bookshelf klasik setinggi plafon yang memberikan aura maskulin dan profesional.' : 'Workspace with dark wood nuances and genuine leather. Equipped with ceiling-height classic built-in bookshelves that provide a masculine and professional aura.',
     images: [
       'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?q=80&w=1200&auto=format&fit=crop',
       'https://images.unsplash.com/photo-1524758631624-e2822e304c36?q=80&w=1200&auto=format&fit=crop'
     ]
   },
-  { id:5, title:'MRS. E', fullName:'Mrs. E Residence - Elegant Foyer', location:'Bogor', area:'600 m2', cat:'Arsitektur',
-    desc: 'Area penyambutan tamu dengan lantai marmer berpola klasik dan meja konsol beraksen emas. Memberikan impresi pertama yang tak terlupakan dari pintu masuk utama.',
+  { id:5, title:'MRS. E', fullName:'Mrs. E Residence - Elegant Foyer', location:'Bogor', area:'600 m2', cat: lang === 'id' ? 'Arsitektur' : 'Architecture',
+    desc: lang === 'id' ? 'Area penyambutan tamu dengan lantai marmer berpola klasik dan meja konsol beraksen emas. Memberikan impresi pertama yang tak terlupakan dari pintu masuk utama.' : 'Guest welcoming area with classic patterned marble floors and a gold-accented console table. Provides an unforgettable first impression from the main entrance.',
     images: [
       'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?q=80&w=1200&auto=format&fit=crop',
       'https://images.unsplash.com/photo-1600121848594-d8644e57abab?q=80&w=1200&auto=format&fit=crop'
     ]
   },
-  { id:6, title:'DR. F', fullName:'Dr. F House - Presidential Suite', location:'Depok', area:'310 m2', cat:'Interior',
-    desc: 'Desain kamar tidur bernuansa putih bersih dengan sentuhan moulding klasik yang proporsional dan elegan, memberikan kenyamanan maksimal.',
+  { id:6, title:'DR. F', fullName:'Dr. F House - Presidential Suite', location:'Depok', area:'310 m2', cat: lang === 'id' ? 'Interior' : 'Interior',
+    desc: lang === 'id' ? 'Desain kamar tidur bernuansa putih bersih dengan sentuhan moulding klasik yang proporsional dan elegan, memberikan kenyamanan maksimal.' : 'Clean white nuanced bedroom design with a touch of proportional and elegant classic moulding, providing maximum comfort.',
     images: [
       'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?q=80&w=1200&auto=format&fit=crop',
       'https://images.unsplash.com/photo-1631049307264-da0ec9d70304?q=80&w=1200&auto=format&fit=crop'
@@ -52,7 +53,7 @@ const PORTFOLIO = [
   },
 ];
 
-function PortfolioCard({ item, onClick }) {
+function PortfolioCard({ item, onClick, lang }) {
   const [ref, vis] = useScrollAnimation({ threshold: 0.1 });
   return (
     <motion.article
@@ -76,7 +77,7 @@ function PortfolioCard({ item, onClick }) {
         </span>
         <h3 className="font-playfair text-2xl md:text-3xl text-white font-bold tracking-[0.2em] uppercase mb-5">{item.title}</h3>
         <div className="flex items-center gap-2 group-hover:gap-3 transition-all duration-300">
-          <span className="text-[10px] text-white uppercase tracking-widest font-semibold border-b border-white/40 pb-0.5">Lihat portfolio</span>
+          <span className="text-[10px] text-white uppercase tracking-widest font-semibold border-b border-white/40 pb-0.5">{lang === 'id' ? 'Lihat portfolio' : 'View portfolio'}</span>
           <div className="w-5 h-5 rounded-full bg-white flex items-center justify-center group-hover:bg-gold-DEFAULT transition-colors">
             <ArrowUpRight size={12} className="text-charcoal group-hover:text-white" />
           </div>
@@ -90,6 +91,9 @@ export default function PortfolioPage() {
   const [ref, vis] = useScrollAnimation({ threshold: 0.05 });
   const [activeItem, setActiveItem] = useState(null);
   const [activeImageIdx, setActiveImageIdx] = useState(0);
+  const { lang } = useLanguage();
+
+  const portfolioData = getPortfolio(lang);
 
   // Lock body scroll when lightbox is open
   useEffect(() => {
@@ -118,14 +122,15 @@ export default function PortfolioPage() {
         {/* Header */}
         <div className="text-center mb-16">
           <motion.div initial={{ opacity:0,y:16 }} animate={{ opacity:1,y:0 }} transition={{ duration:0.7 }}>
-            <div className="section-label justify-center"><span>Mahakarya Kami</span></div>
+            <div className="section-label justify-center"><span>{lang === 'id' ? 'Mahakarya Kami' : 'Our Masterpieces'}</span></div>
             <h1 className="font-playfair text-2xl sm:text-3xl md:text-4xl font-bold text-white mt-2">
-              Galeri <span className="gold-text">Portofolio</span>
+              {lang === 'id' ? 'Galeri' : 'Portfolio'} <span className="gold-text">{lang === 'id' ? 'Portofolio' : 'Gallery'}</span>
             </h1>
             <div className="divider-gold mx-auto mt-5" />
             <p className="mt-5 max-w-xl mx-auto text-sm leading-relaxed" style={{ color: 'rgba(255,255,255,0.45)' }}>
-              Jelajahi koleksi proyek interior dan arsitektur klasik terbaik kami. 
-              Setiap sudut dirancang dengan presisi untuk mewujudkan visi klien menjadi kenyataan.
+              {lang === 'id'
+                ? 'Jelajahi koleksi proyek interior dan arsitektur klasik terbaik kami. Setiap sudut dirancang dengan presisi untuk mewujudkan visi klien menjadi kenyataan.'
+                : 'Explore our best collection of classic interior and architectural projects. Every corner is designed with precision to make the client\'s vision a reality.'}
             </p>
           </motion.div>
         </div>
@@ -136,7 +141,7 @@ export default function PortfolioPage() {
           className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-3 md:gap-6"
         >
           <AnimatePresence>
-            {PORTFOLIO.map(item => (
+            {portfolioData.map(item => (
               <motion.div
                 key={item.id}
                 layout
@@ -145,7 +150,7 @@ export default function PortfolioPage() {
                 exit={{ opacity: 0, scale: 0.9 }}
                 transition={{ duration: 0.3 }}
               >
-                <PortfolioCard item={item} onClick={(it) => {
+                <PortfolioCard item={item} lang={lang} onClick={(it) => {
                   setActiveItem(it);
                   setActiveImageIdx(0);
                 }} />
@@ -153,8 +158,6 @@ export default function PortfolioPage() {
             ))}
           </AnimatePresence>
         </motion.div>
-
-
 
       </div>
 
@@ -184,7 +187,7 @@ export default function PortfolioPage() {
                 onClick={() => setActiveItem(null)}
                 className="absolute top-3 right-3 z-50 w-9 h-9 rounded-full flex items-center justify-center transition-all"
                 style={{ background: 'rgba(201,168,76,0.15)', border: '1px solid rgba(201,168,76,0.30)', color: '#C9A84C' }}
-                aria-label="Tutup"
+                aria-label={lang === 'id' ? 'Tutup' : 'Close'}
               >
                 <X size={16} />
               </button>
@@ -248,7 +251,7 @@ export default function PortfolioPage() {
                        <MapPin size={16} />
                      </div>
                      <div>
-                       <p className="text-[10px] uppercase tracking-widest font-semibold mb-0.5" style={{ color: 'rgba(255,255,255,0.35)' }}>Lokasi</p>
+                       <p className="text-[10px] uppercase tracking-widest font-semibold mb-0.5" style={{ color: 'rgba(255,255,255,0.35)' }}>{lang === 'id' ? 'Lokasi' : 'Location'}</p>
                        <p className="text-sm font-medium text-white">{activeItem.location}</p>
                      </div>
                    </div>
@@ -257,7 +260,7 @@ export default function PortfolioPage() {
                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><path d="M3 9h18"></path><path d="M9 21V9"></path></svg>
                      </div>
                      <div>
-                       <p className="text-[10px] uppercase tracking-widest font-semibold mb-0.5" style={{ color: 'rgba(255,255,255,0.35)' }}>Luas Area</p>
+                       <p className="text-[10px] uppercase tracking-widest font-semibold mb-0.5" style={{ color: 'rgba(255,255,255,0.35)' }}>{lang === 'id' ? 'Luas Area' : 'Area Size'}</p>
                        <p className="text-sm font-medium text-white">{activeItem.area}</p>
                      </div>
                    </div>
@@ -269,7 +272,7 @@ export default function PortfolioPage() {
                  
                  <div className="mt-auto pt-8">
                    <Link to="/konsultasi" className="btn-gold w-full flex justify-center text-sm py-3" onClick={() => setActiveItem(null)}>
-                     Konsultasikan Proyek Serupa
+                     {lang === 'id' ? 'Konsultasikan Proyek Serupa' : 'Consult Similar Project'}
                    </Link>
                  </div>
               </div>
@@ -280,4 +283,3 @@ export default function PortfolioPage() {
     </div>
   );
 }
-

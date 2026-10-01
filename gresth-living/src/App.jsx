@@ -11,7 +11,7 @@ import LayananPage    from './pages/LayananPage';
 import PortfolioPage  from './pages/PortfolioPage';
 import TentangPage    from './pages/TentangPage';
 import KonsultasiPage from './pages/KonsultasiPage';
-
+import { LanguageProvider } from './context/LanguageContext';
 /* Scroll to top on route change */
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -142,5 +142,9 @@ function AppInner() {
 }
 
 export default function App() {
-  return <AppInner />;
+  return (
+    <LanguageProvider>
+      <AppInner />
+    </LanguageProvider>
+  );
 }
