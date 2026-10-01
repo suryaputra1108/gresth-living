@@ -1,7 +1,7 @@
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Palette, Ruler, Sofa, CheckCircle, ChevronRight, MessageCircle, Map, FileText, Monitor, Handshake, Hammer, CreditCard, Search, Award, CheckSquare } from 'lucide-react';
+import { Palette, Ruler, Sofa, CheckCircle, ChevronRight, MessageCircle, Map, FileText, Monitor, Handshake, Hammer, CreditCard, Search, Award, CheckSquare, ChevronDown } from 'lucide-react';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
 import { fadeInUp, fadeInLeft, fadeInRight, fadeIn, staggerContainer } from '../utils/animations';
 
@@ -19,7 +19,7 @@ const SERVICES = [
       'Pemilihan Material & Finishes',
       'Panduan Teknis Pelaksanaan',
     ],
-    image: 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=80&w=900&auto=format&fit=crop',
+    image: '/layanan-desain.jpg',
   },
   {
     id: 'instalasi',
@@ -34,7 +34,7 @@ const SERVICES = [
       'Plumbing & Sanitasi',
       'Quality Control & Serah Terima',
     ],
-    image: 'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?q=80&w=900&auto=format&fit=crop',
+    image: '/layanan-instalasi.jpg',
   },
   {
     id: 'furniture',
@@ -49,7 +49,7 @@ const SERVICES = [
       'Finishing Duco & Melamine',
       'Instalasi & Garansi 1 Tahun',
     ],
-    image: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?q=80&w=900&auto=format&fit=crop',
+    image: '/layanan-furniture.jpg',
   },
 ];
 
@@ -67,12 +67,16 @@ const WORKFLOW = [
 ];
 
 function PageHero() {
+  const { scrollY } = useScroll();
+  // Move the background down slightly slower than the scroll to create parallax
+  const y = useTransform(scrollY, [0, 1000], [0, 300]);
+
   return (
     <section className="relative pt-40 pb-32 px-6 overflow-hidden" aria-labelledby="layanan-h1">
       {/* Background Image */}
-      <div 
-        className="absolute inset-0 z-0 bg-cover bg-center"
-        style={{ backgroundImage: 'url("/service-hero.jpg")' }}
+      <motion.div 
+        className="absolute -top-[20%] -bottom-[20%] left-0 right-0 z-0 bg-cover bg-[center_80%]"
+        style={{ backgroundImage: 'url("/service-hero.jpg")', y }}
       />
       {/* Gradient Overlay for Readability */}
       <div className="absolute inset-0 z-0 bg-gradient-to-b from-black/60 via-black/40 to-[#0D0D0D]" />
@@ -233,6 +237,82 @@ function BusinessProcess() {
   );
 }
 
+const FAQS = [
+  {
+    q: 'Berapa lama estimasi waktu pengerjaan interior?',
+    a: 'Bergantung pada luas area dan tingkat kesulitan detail. Rata-rata memakan waktu 4-8 minggu sejak desain disetujui hingga serah terima.'
+  },
+  {
+    q: 'Apakah Gresth Living melayani proyek di luar Jabodetabek?',
+    a: 'Saat ini fokus utama kami adalah area Jabodetabek. Namun, untuk proyek berskala besar, kami dapat mempertimbangkannya dengan biaya akomodasi tambahan.'
+  },
+  {
+    q: 'Bagaimana sistem pembayarannya?',
+    a: 'Pembayaran dibagi menjadi 3 termin yang transparan: 40% setelah desain disetujui, 40% saat progres produksi mencapai target, dan 20% pelunasan setelah serah terima.'
+  },
+  {
+    q: 'Apakah saya bisa menggunakan desain saya sendiri untuk dieksekusi?',
+    a: 'Tentu. Tim instalasi kami siap merealisasikan desain yang sudah Anda miliki dengan standar kualitas Gresth Living, dengan catatan gambar kerja sudah lengkap.'
+  },
+  {
+    q: 'Apakah ada garansi untuk custom furniture dan instalasi?',
+    a: 'Ya, kami memberikan garansi 1 tahun untuk cacat produksi dan instalasi agar investasi Anda terjamin.'
+  }
+];
+
+function FaqSection() {
+  const [openIndex, setOpenIndex] = useState(null);
+  const [ref, vis] = useScrollAnimation({ threshold: 0.1 });
+
+  return (
+    <section ref={ref} className="py-24 px-6" style={{ background: '#0D0D0D' }} aria-labelledby="faq-heading">
+      <div className="max-w-3xl mx-auto">
+        <motion.div variants={staggerContainer} initial="hidden" animate={vis ? 'visible' : 'hidden'} className="text-center mb-16">
+          <motion.div variants={fadeIn} className="section-label justify-center"><span>Tanya Jawab</span></motion.div>
+          <motion.h2 id="faq-heading" variants={fadeInUp} className="font-playfair text-2xl sm:text-3xl md:text-4xl font-bold text-white mt-2">
+            Pertanyaan yang <span className="gold-text">Sering Diajukan</span>
+          </motion.h2>
+          <motion.div variants={fadeInUp} className="divider-gold mx-auto mt-5" />
+        </motion.div>
+
+        <motion.div variants={staggerContainer} initial="hidden" animate={vis ? 'visible' : 'hidden'} className="space-y-4">
+          {FAQS.map((faq, index) => {
+            const isOpen = openIndex === index;
+            return (
+              <motion.div key={index} variants={fadeInUp} 
+                className={`border rounded-xl overflow-hidden transition-colors duration-300 ${isOpen ? 'border-gold-DEFAULT/50 bg-[#1E1E1E]' : 'border-white/10 bg-white/[0.02] hover:bg-white/[0.04]'}`}>
+                <button
+                  onClick={() => setOpenIndex(isOpen ? null : index)}
+                  className="w-full flex items-center justify-between p-6 text-left"
+                >
+                  <span className="font-playfair text-base sm:text-lg font-bold text-white">{faq.q}</span>
+                  <motion.div
+                    animate={{ rotate: isOpen ? 180 : 0 }}
+                    transition={{ duration: 0.3 }}
+                    className="ml-4 flex-shrink-0 text-gold-DEFAULT"
+                  >
+                    <ChevronDown size={20} />
+                  </motion.div>
+                </button>
+                <motion.div
+                  initial={false}
+                  animate={{ height: isOpen ? 'auto' : 0, opacity: isOpen ? 1 : 0 }}
+                  transition={{ duration: 0.3, ease: 'easeInOut' }}
+                  className="overflow-hidden"
+                >
+                  <div className="px-6 pb-8 pt-2 text-sm sm:text-base leading-relaxed text-white/60">
+                    {faq.a}
+                  </div>
+                </motion.div>
+              </motion.div>
+            );
+          })}
+        </motion.div>
+      </div>
+    </section>
+  );
+}
+
 export default function LayananPage() {
   return (
     <main style={{ background: '#0D0D0D' }}>
@@ -240,6 +320,8 @@ export default function LayananPage() {
       {SERVICES.map((s, i) => <ServiceDetail key={s.id} service={s} index={i} />)}
       
       <BusinessProcess />
+      
+      <FaqSection />
 
       {/* CTA */}
       <section className="py-24 px-6 text-center" style={{ background: '#141414', borderTop: '1px solid rgba(201,168,76,0.12)' }}>

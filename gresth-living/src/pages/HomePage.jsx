@@ -1,7 +1,7 @@
 import { motion, useInView, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Palette, Ruler, Sofa, ChevronRight, ArrowRight, CheckCircle } from 'lucide-react';
+import { Palette, Ruler, Sofa, ChevronRight, ChevronLeft, ArrowRight, CheckCircle } from 'lucide-react';
 import HeroSection from '../components/HeroSection';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
 import { fadeInUp, fadeInLeft, fadeInRight, fadeIn, staggerContainer, scaleIn } from '../utils/animations';
@@ -318,9 +318,20 @@ function TestimonialsSection() {
 
   const scrollTo = (index) => {
     if (scrollRef.current) {
-      const itemWidth = scrollRef.current.scrollWidth / TESTIMONIALS.length;
-      scrollRef.current.scrollTo({ left: index * itemWidth, behavior: 'smooth' });
+      const child = scrollRef.current.children[index];
+      if (child) {
+        // Use native scrollIntoView to perfectly center the item, letting CSS scroll-snap and scroll-smooth handle the rest
+        child.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+      }
     }
+  };
+
+  const handlePrev = () => {
+    if (activeIndex > 0) scrollTo(activeIndex - 1);
+  };
+
+  const handleNext = () => {
+    if (activeIndex < TESTIMONIALS.length - 1) scrollTo(activeIndex + 1);
   };
 
   return (
@@ -342,7 +353,7 @@ function TestimonialsSection() {
           <div
             ref={scrollRef}
             onScroll={handleScroll}
-            className="flex overflow-x-auto gap-6 pb-6 snap-x snap-mandatory -mx-6 px-6 md:mx-0 md:px-0 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none']">
+            className="flex overflow-x-auto gap-6 pb-6 snap-x snap-mandatory scroll-smooth -mx-6 px-6 md:mx-0 md:px-0 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none']">
             {TESTIMONIALS.map((t) => (
               <motion.blockquote
                 key={t.name}
@@ -366,16 +377,36 @@ function TestimonialsSection() {
             ))}
           </div>
 
-          {/* Pagination Dots */}
-          <div className="flex justify-center mt-6 gap-2">
-            {TESTIMONIALS.map((_, i) => (
-              <button
-                key={i}
-                aria-label={`Go to slide ${i + 1}`}
-                onClick={() => scrollTo(i)}
-                className={`h-2.5 rounded-full transition-all duration-300 ${activeIndex === i ? 'w-8 bg-[#1A1414]' : 'w-2.5 bg-[#1A1414]/20 hover:bg-[#1A1414]/40'}`}
-              />
-            ))}
+          {/* Pagination Dots & Arrows */}
+          <div className="flex items-center justify-center mt-8 gap-4">
+            <button 
+              onClick={handlePrev}
+              disabled={activeIndex === 0}
+              className="w-10 h-10 rounded-full flex items-center justify-center border border-[#1A1414]/20 text-[#1A1414]/50 hover:bg-[#1A1414]/10 hover:text-[#1A1414] disabled:opacity-30 disabled:hover:bg-transparent disabled:cursor-not-allowed transition-colors"
+              aria-label="Previous Testimonial"
+            >
+              <ChevronLeft size={20} />
+            </button>
+
+            <div className="flex justify-center gap-2">
+              {TESTIMONIALS.map((_, i) => (
+                <button
+                  key={i}
+                  aria-label={`Go to slide ${i + 1}`}
+                  onClick={() => scrollTo(i)}
+                  className={`h-2.5 rounded-full transition-all duration-300 ${activeIndex === i ? 'w-8 bg-[#1A1414]' : 'w-2.5 bg-[#1A1414]/20 hover:bg-[#1A1414]/40'}`}
+                />
+              ))}
+            </div>
+
+            <button 
+              onClick={handleNext}
+              disabled={activeIndex === TESTIMONIALS.length - 1}
+              className="w-10 h-10 rounded-full flex items-center justify-center border border-[#1A1414]/20 text-[#1A1414]/50 hover:bg-[#1A1414]/10 hover:text-[#1A1414] disabled:opacity-30 disabled:hover:bg-transparent disabled:cursor-not-allowed transition-colors"
+              aria-label="Next Testimonial"
+            >
+              <ChevronRight size={20} />
+            </button>
           </div>
         </motion.div>
       </div>

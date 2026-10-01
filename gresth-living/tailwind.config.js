@@ -32,8 +32,8 @@ export default {
         },
       },
       fontFamily: {
-        playfair: ['"Marcellus"', 'serif'],
-        sans:     ['"Manrope"', 'sans-serif'],
+        playfair: ['Playfair Display', 'serif'],
+        sans:     ['Manrope', 'sans-serif'],
       },
       borderRadius: {
         'btn':  '8px',

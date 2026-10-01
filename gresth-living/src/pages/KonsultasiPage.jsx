@@ -66,10 +66,11 @@ Mohon informasi lebih lanjut. Terima kasih!`;
     <main className="min-h-screen bg-[#0D0D0D]">
       {/* Hero Background */}
       <div className="relative pt-32 pb-20 px-6 overflow-hidden mb-12">
-        <div className="absolute inset-0">
-          <img src="/konsultasi-image.jpg" alt="Gresth Living Storefront" className="w-full h-full object-cover" />
-          <div className="absolute inset-0 bg-gradient-to-b from-[#0D0D0D]/95 via-[#0D0D0D]/75 to-[#0D0D0D]" />
-        </div>
+        <div 
+          className="absolute inset-0 bg-cover bg-[center_140%] bg-fixed"
+          style={{ backgroundImage: 'url("/konsultasi-image.jpg")' }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0D0D0D]/40 via-[#0D0D0D]/80 to-[#0D0D0D]" />
         
         <div className="relative max-w-7xl mx-auto z-10 text-center">
           <motion.div initial={{ opacity:0,y:16 }} animate={{ opacity:1,y:0 }} transition={{ duration:0.7 }}>
