@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { ShieldCheck, Clock, Sparkles } from 'lucide-react';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
 import { fadeInUp, fadeInLeft, fadeInRight, staggerContainer } from '../utils/animations';
@@ -21,6 +21,8 @@ const getSteps = (lang) => [
 ];
 
 export default function KonsultasiPage() {
+  const { scrollY } = useScroll();
+  const y = useTransform(scrollY, [0, 1000], [0, 300]);
   const { lang } = useLanguage();
   const [form, setForm] = useState(INITIAL);
   const [errors, setErrors] = useState({});
@@ -82,17 +84,17 @@ Please provide more information. Thank you!`;
   return (
     <main className="min-h-screen bg-[#0D0D0D]">
       {/* Hero Background */}
-      <div className="relative pt-32 pb-16 px-6 overflow-hidden">
-        <div 
-          className="absolute inset-0 bg-cover bg-[center_140%] bg-fixed"
-          style={{ backgroundImage: 'url("/konsultasi-image.jpg")' }}
+      <section className="relative pt-40 pb-28 px-6 overflow-hidden" aria-labelledby="konsultasi-h1">
+        <motion.div 
+          className="absolute -top-[20%] -bottom-[20%] left-0 right-0 z-0 bg-cover bg-[center_80%]"
+          style={{ backgroundImage: 'url("/konsultasi-image.jpg")', y }}
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#0D0D0D]/40 via-[#0D0D0D]/80 to-[#0D0D0D]" />
+        <div className="absolute inset-0 z-0 bg-gradient-to-b from-black/60 via-black/40 to-[#0D0D0D]" />
         
         <div className="relative max-w-7xl mx-auto z-10 text-center">
           <motion.div initial={{ opacity:0,y:16 }} animate={{ opacity:1,y:0 }} transition={{ duration:0.7 }}>
             <div className="section-label justify-center"><span>{lang === 'id' ? 'Langkah Pertama' : 'First Step'}</span></div>
-            <h1 className="font-playfair text-2xl sm:text-3xl md:text-4xl font-bold text-white mt-2">
+            <h1 id="konsultasi-h1" className="font-playfair text-2xl sm:text-3xl md:text-4xl font-bold text-white mt-2">
               {lang === 'id' ? 'Mulai' : 'Start Your'} <span className="gold-text">{lang === 'id' ? 'Proyek' : 'Project'}</span> {lang === 'id' ? 'Anda' : ''}
             </h1>
             <div className="divider-gold mx-auto mt-5" />
@@ -104,7 +106,7 @@ Please provide more information. Thank you!`;
             </p>
           </motion.div>
         </div>
-      </div>
+      </section>
 
       <section className="relative pt-8 pb-24 overflow-hidden">
         {/* Parallax Marble Background */}
