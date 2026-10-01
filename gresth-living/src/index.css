@@ -1,0 +1,275 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ================================================================
+   GRESTH LIVING — Dark Luxury Theme
+   Palette: Deep Black · Warm Charcoal · Gold · Cream accent
+   ================================================================ */
+
+@layer base {
+  :root {
+    --black:      #0D0D0D;
+    --dark:       #141414;
+    --dark-2:     #1C1C1C;
+    --dark-3:     #242424;
+    --cream:      #F5F0E8;
+    --cream-soft: #EDE5D0;
+    --gold:       #C9A84C;
+    --gold-light: #E8C96A;
+    --gold-dim:   #9A7A30;
+    --text-light: rgba(255,255,255,0.85);
+    --text-muted: rgba(255,255,255,0.45);
+  }
+
+  * { box-sizing: border-box; }
+
+  html {
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+  }
+
+  body {
+    background-color: #0D0D0D;
+    color: rgba(255,255,255,0.85);
+    @apply font-sans antialiased;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4 { @apply font-playfair; }
+
+  ::selection {
+    background-color: rgba(201,168,76,0.30);
+    color: #fff;
+  }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: #141414; }
+  ::-webkit-scrollbar-thumb { background: #C9A84C; border-radius: 2px; }
+  ::-webkit-scrollbar-thumb:hover { background: #E8C96A; }
+}
+
+@layer components {
+
+  /* ── Navbar glass (on scroll) ── */
+  .glass-nav {
+    background: rgba(13,13,13,0.92);
+    backdrop-filter: blur(24px) saturate(160%);
+    -webkit-backdrop-filter: blur(24px) saturate(160%);
+    border-bottom: 1px solid rgba(201,168,76,0.15);
+  }
+
+  /* ── Gold gradient text ── */
+  .gold-text {
+    background: linear-gradient(135deg, #9A7A30 0%, #C9A84C 40%, #E8C96A 70%, #C9A84C 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  /* ── Primary Button (Gold) ── */
+  .btn-gold {
+    @apply relative inline-flex items-center justify-center gap-2
+           px-8 py-3.5 font-semibold text-sm tracking-widest uppercase overflow-hidden;
+    background: linear-gradient(135deg, #C9A84C, #E8C96A, #9A7A30);
+    color: #0D0D0D;
+    border-radius: 8px;
+    transition: all 0.35s cubic-bezier(0.4,0,0.2,1);
+    box-shadow: 0 4px 24px rgba(201,168,76,0.30);
+    border: none;
+    letter-spacing: 0.12em;
+  }
+  .btn-gold::before {
+    content: '';
+    @apply absolute inset-0 opacity-0;
+    background: linear-gradient(135deg, #E8C96A, #C9A84C);
+    border-radius: 8px;
+    transition: opacity 0.3s ease;
+  }
+  .btn-gold:hover::before { @apply opacity-100; }
+  .btn-gold:hover {
+    box-shadow: 0 8px 40px rgba(201,168,76,0.50);
+    transform: translateY(-2px);
+  }
+  .btn-gold span { position: relative; z-index: 1; }
+  .btn-gold svg  { position: relative; z-index: 1; }
+
+  /* ── Outline Gold Button ── */
+  .btn-outline-gold {
+    @apply inline-flex items-center justify-center gap-2
+           px-8 py-3.5 font-semibold text-sm tracking-widest uppercase;
+    background: transparent;
+    color: #C9A84C;
+    border: 1px solid #C9A84C;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    letter-spacing: 0.12em;
+  }
+  .btn-outline-gold:hover {
+    background: linear-gradient(135deg, #C9A84C, #E8C96A);
+    color: #0D0D0D;
+    border-color: transparent;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 32px rgba(201,168,76,0.35);
+  }
+
+  /* ── Outline White Button ── */
+  .btn-outline {
+    @apply inline-flex items-center justify-center gap-2
+           px-8 py-3.5 font-semibold text-sm tracking-widest uppercase;
+    background: transparent;
+    color: rgba(255,255,255,0.85);
+    border: 1px solid rgba(255,255,255,0.35);
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    letter-spacing: 0.12em;
+  }
+  .btn-outline:hover {
+    background: rgba(255,255,255,0.1);
+    border-color: rgba(255,255,255,0.7);
+    transform: translateY(-2px);
+  }
+
+  /* ── White Button ── */
+  .btn-white {
+    @apply inline-flex items-center justify-center gap-2
+           px-8 py-3.5 font-semibold text-sm tracking-widest uppercase;
+    background: #FFFFFF;
+    color: #0D0D0D;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    letter-spacing: 0.12em;
+  }
+  .btn-white:hover {
+    background: rgba(255,255,255,0.88);
+    box-shadow: 0 8px 32px rgba(255,255,255,0.15);
+    transform: translateY(-2px);
+  }
+
+  /* ── Section Label ── */
+  .section-label {
+    @apply inline-flex items-center gap-3 text-[10px] font-semibold tracking-[0.25em] uppercase mb-4;
+    color: #C9A84C;
+  }
+  .section-label::before,
+  .section-label::after {
+    content: '';
+    display: block;
+    width: 32px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #C9A84C);
+  }
+  .section-label::after {
+    background: linear-gradient(90deg, #C9A84C, transparent);
+  }
+
+  /* ── Section label on light bg ── */
+  .section-label-dark {
+    @apply inline-flex items-center gap-3 text-[10px] font-semibold tracking-[0.25em] uppercase mb-4;
+    color: #9A7A30;
+  }
+  .section-label-dark::before,
+  .section-label-dark::after {
+    content: '';
+    display: block;
+    width: 32px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #9A7A30);
+  }
+  .section-label-dark::after {
+    background: linear-gradient(90deg, #9A7A30, transparent);
+  }
+
+  /* ── Gold divider ── */
+  .divider-gold {
+    width: 48px;
+    height: 1px;
+    background: linear-gradient(90deg, #C9A84C, #E8C96A);
+    border-radius: 1px;
+  }
+
+  /* ── Dark section ── */
+  .section-dark {
+    background-color: #0D0D0D;
+    color: rgba(255,255,255,0.85);
+  }
+  .section-dark-2 {
+    background-color: #141414;
+  }
+  .section-dark-3 {
+    background-color: #1C1C1C;
+  }
+
+  /* ── Light section (cream on dark site) ── */
+  .section-light {
+    background-color: #F5F0E8;
+    color: #1A1414;
+  }
+
+  /* ── Service Card (dark) ── */
+  .service-card {
+    @apply relative p-8 overflow-hidden;
+    background: #1C1C1C;
+    border: 1px solid rgba(201,168,76,0.12);
+    border-radius: 12px;
+    transition: all 0.4s cubic-bezier(0.4,0,0.2,1);
+  }
+  .service-card:hover {
+    border-color: rgba(201,168,76,0.45);
+    transform: translateY(-6px);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.50), 0 0 0 1px rgba(201,168,76,0.20);
+    background: #242424;
+  }
+
+  /* ── Portfolio Card ── */
+  .portfolio-card {
+    @apply relative overflow-hidden;
+    border-radius: 12px;
+    transition: all 0.4s cubic-bezier(0.4,0,0.2,1);
+  }
+  .portfolio-card img {
+    transition: transform 0.7s cubic-bezier(0.4,0,0.2,1);
+  }
+  .portfolio-card:hover img { transform: scale(1.08); }
+
+  /* ── Form Input ── */
+  .form-input {
+    @apply w-full px-5 py-4 text-sm outline-none;
+    background: #1C1C1C;
+    color: rgba(255,255,255,0.85);
+    border: 1px solid rgba(201,168,76,0.20);
+    border-radius: 8px;
+    font-family: 'Manrope', sans-serif;
+    transition: all 0.25s ease;
+  }
+  .form-input::placeholder { color: rgba(255,255,255,0.30); }
+  .form-input:focus {
+    border-color: #C9A84C;
+    box-shadow: 0 0 0 3px rgba(201,168,76,0.10);
+    background: #242424;
+  }
+
+  /* ── cream-border compat ── */
+  .border-cream-border { border-color: rgba(201,168,76,0.15); }
+  .bg-cream-DEFAULT    { background-color: #F5F0E8; }
+  .bg-section-cream    { background-color: #141414; }
+  .bg-section-white    { background-color: #1C1C1C; }
+
+  /* ── Card hover glow ── */
+  .card-dark {
+    background: #1C1C1C;
+    border: 1px solid rgba(255,255,255,0.06);
+    transition: all 0.35s ease;
+  }
+  .card-dark:hover {
+    border-color: rgba(201,168,76,0.35);
+    box-shadow: 0 16px 48px rgba(0,0,0,0.50);
+  }
+}
+
+@layer utilities {
+  .text-balance { text-wrap: balance; }
+  .text-light   { color: rgba(255,255,255,0.85); }
+  .text-muted   { color: rgba(255,255,255,0.45); }
+}
