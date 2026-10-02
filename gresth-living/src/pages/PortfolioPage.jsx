@@ -8,7 +8,7 @@ import { useLanguage } from '../context/LanguageContext';
 
 
 const getPortfolio = (lang) => [
-  { id:1, title:'MRS. G', fullName:'Mrs. G House - Classic Blue-Grey Kitchen', location:'Andara, Jakarta Selatan', area:'200 m2', year: '2024', cat: lang === 'id' ? 'Interior' : 'Interior',
+  { id:1, title:'MRS. G', fullName:'Mrs. G House - Classic Blue-Grey Kitchen', location:'Andara, Jakarta Selatan', region: 'Jakarta', area:'200 m2', year: '2024', cat: lang === 'id' ? 'Interior' : 'Interior',
     desc: lang === 'id' 
       ? 'Dengan kombinasi palet biru-abu, dapur klasik ini menciptakan suasana yang abadi, menawarkan harmoni antara keanggunan klasik dan ketenangan warna-warna yang dipilih. Desain simpel namun memberikan sentuhan kemewahan kelas atas.' 
       : 'With a blue-grey palette combination, this classic kitchen creates a timeless atmosphere, offering harmony between classic elegance and the serenity of the chosen colors. Simple design yet offers a touch of high-class luxury.',
@@ -19,7 +19,7 @@ const getPortfolio = (lang) => [
       '/mrs-g-house-4.jpg'
     ]
   },
-  { id:2, title:'MRS. H', fullName:'Mrs. H House - Soft Classic Kitchen Set', location:'Pejaten, Jakarta Selatan', area:'200 m2', year: '2022', cat: lang === 'id' ? 'Interior' : 'Interior',
+  { id:2, title:'MRS. H', fullName:'Mrs. H House - Soft Classic Kitchen Set', location:'Pejaten, Jakarta Selatan', region: 'Jakarta', area:'200 m2', year: '2022', cat: lang === 'id' ? 'Interior' : 'Interior',
     desc: lang === 'id' 
       ? 'Didominasi oleh warna putih, dapur klasik ini menampilkan keindahan dalam kesederhanaan, memberikan kesan elegan yang abadi. Warna putih menciptakan dasar yang sempurna untuk mencapai tampilan dapur klasik yang bersih dan indah.' 
       : 'Dominated by white, this classic kitchen displays beauty in simplicity, providing a timeless elegant impression. White creates the perfect foundation to achieve a clean and beautiful classic kitchen look.',
@@ -30,7 +30,7 @@ const getPortfolio = (lang) => [
       '/mrs-h-house-4.jpg'
     ]
   },
-  { id:3, title:'MR. E', fullName:'Mr. Eddy House - Klasik Kontemporer', location:'Pati, Jawa Tengah', area:'400 m2', year: '2023', cat: lang === 'id' ? 'Interior' : 'Interior',
+  { id:3, title:'MR. E', fullName:'Mr. E House - Klasik Kontemporer', location:'Pati, Jawa Tengah', region: 'Luar Jabodetabek', area:'400 m2', year: '2023', cat: lang === 'id' ? 'Interior' : 'Interior',
     desc: lang === 'id' 
       ? 'Dinding putih bersih menciptakan latar belakang yang damai. Ruang makan open space ini memamerkan keanggunan warna putih yang cerah, sementara ruang keluarga memancarkan kehangatan dengan dominasi warna putih dan furnitur coklat yang elegan.' 
       : 'Clean white walls create a peaceful background. This open space dining room showcases the elegance of bright white colors, while the living room exudes warmth with the dominance of white and elegant brown furniture.',
@@ -43,7 +43,7 @@ const getPortfolio = (lang) => [
       '/mr-e-house-6.jpg'
     ]
   },
-  { id:4, title:'MR. EN', fullName:'Mr. Endrizal House - Kemewahan Modern', location:'Batusangkar, Sumatera Barat', area:'600 m2', year: '2023', cat: lang === 'id' ? 'Interior' : 'Interior',
+  { id:4, title:'MR. EN', fullName:'Mr. EN House - Kemewahan Modern', location:'Batusangkar, Sumatera Barat', region: 'Luar Jabodetabek', area:'600 m2', year: '2023', cat: lang === 'id' ? 'Interior' : 'Interior',
     desc: lang === 'id' 
       ? 'Dinding ruang tamu dicat dengan warna abu-abu yang lembut dan netral, memberikan latar belakang yang bersih dan mencerahkan ruangan. Lantai marmer menciptakan kilauan alami yang memancarkan kemewahan nan elegan tak tertandingi.' 
       : 'The living room walls are painted in a soft and neutral gray, providing a clean background that brightens the room. The marble floor creates a natural shine that radiates an unparalleled elegant luxury.',
@@ -54,7 +54,7 @@ const getPortfolio = (lang) => [
       '/mr-en-house-4.jpg'
     ]
   },
-  { id:5, title:'MRS. R', fullName:'Mrs. Raden House - Nuansa Mewah Keanggunan Sentuhan Pink dan Kemewahan Emas', location:'BSD, Semarang', area:'800 m2', year: '2022', cat: lang === 'id' ? 'Interior' : 'Interior',
+  { id:5, title:'MRS. R', fullName:'Mrs. R House - Nuansa Mewah Keanggunan Sentuhan Pink dan Kemewahan Emas', location:'BSD, Semarang', region: 'Luar Jabodetabek', area:'800 m2', year: '2022', cat: lang === 'id' ? 'Interior' : 'Interior',
     desc: lang === 'id' 
       ? 'Warna pink yang lembut memberikan kehangatan, aksen emas yang berkilauan memberikan kemewahan, dan elemen putih yang bersih menciptakan harmoni sempurna. Suasana klasik yang memukau memenuhi setiap sudut interior ini, diwarnai dengan sentuhan mewah dari palet warna yang khas.' 
       : 'The soft pink color provides warmth, sparkling gold accents provide luxury, and clean white elements create perfect harmony. A stunning classic atmosphere fills every corner of this interior, colored with a luxurious touch from a distinctive color palette.',
@@ -69,7 +69,7 @@ const getPortfolio = (lang) => [
       '/mrs-raden-house-8.jpg'
     ]
   },
-  { id:6, title:'MR. A', fullName:'Mr. Andry House - Eksklusifitas Marmer', location:'Rancamaya, Bogor', area:'1000 m2', year: '2022', cat: lang === 'id' ? 'Interior' : 'Interior',
+  { id:6, title:'MR. A', fullName:'Mr. A House - Eksklusifitas Marmer', location:'Rancamaya, Bogor', region: 'Bogor', area:'1000 m2', year: '2022', cat: lang === 'id' ? 'Interior' : 'Interior',
     desc: lang === 'id' 
       ? 'Keanggunan warna putih dan kemewahan marmer dalam dapur ini melampaui fungsi memasak. Dapur ini bukan hanya tempat untuk mengolah bahan makanan, tetapi juga ruang di mana kreativitas dan kebersamaan bersatu. Warna putih menciptakan atmosfer yang tenang, memberikan keleluasaan bagi pikiran untuk melayang dan kreasi untuk berkembang. Marmer hitam menjadi pondasi yang kokoh, mengingatkan kita bahwa setiap momen di dapur ini adalah bagian dari kisah panjang kehidupan.' 
       : 'The elegance of white and the luxury of marble in this kitchen go beyond the function of cooking. This kitchen is not just a place to prepare food, but also a space where creativity and togetherness unite. The white color creates a calm atmosphere, giving freedom for the mind to wander and creations to develop. The black marble becomes a solid foundation, reminding us that every moment in this kitchen is part of the long story of life.',
@@ -80,7 +80,7 @@ const getPortfolio = (lang) => [
       '/mr-andry-house-4.jpg'
     ]
   },
-  { id:7, title:'MRS. AN', fullName:'Mrs. Anna House - Putih Murni dengan Aksen Kayu', location:'Citragrand, Cibubur', area:'850 m2', year: '2021', cat: lang === 'id' ? 'Interior' : 'Interior',
+  { id:7, title:'MRS. AN', fullName:'Mrs. AN House - Putih Murni dengan Aksen Kayu', location:'Citragrand, Cibubur', region: 'Bekasi', area:'850 m2', year: '2021', cat: lang === 'id' ? 'Interior' : 'Interior',
     desc: lang === 'id' 
       ? 'Tempat ini sempurna untuk menyimpan dan mengekspresikan jati diri fashion Anda. Sementara itu, suasana dapur yang merangkul keindahan alam tercipta melalui kitchen set putih klasik dengan aksen kayu coklat, memberikan ruang yang ramah dan hangat. Menjelajahi keanggunan dalam setiap detail, begitu Anda melangkah masuk ke dalam dunia keindahan dapur yang abadi, menciptakan suasana yang memancarkan ketenangan dan kemewahan melalui setiap detailnya.' 
       : 'This place is perfect for storing and expressing your fashion identity. Meanwhile, a kitchen atmosphere that embraces natural beauty is created through a classic white kitchen set with brown wood accents, providing a friendly and warm space. Exploring elegance in every detail, as soon as you step into the timeless world of kitchen beauty, it creates an atmosphere that radiates tranquility and luxury through every detail.',
@@ -91,7 +91,7 @@ const getPortfolio = (lang) => [
       '/mrs-anna-house-4.jpg'
     ]
   },
-  { id:8, title:'MR. END', fullName:'Mr. End House - Modern Classic Specialist', location:'Jakarta', area:'-', year: '-', cat: lang === 'id' ? 'Interior' : 'Interior',
+  { id:8, title:'MR. END', fullName:'Mr. End House - Modern Classic Specialist', location:'Jakarta', region: 'Jakarta', area:'-', year: '-', cat: lang === 'id' ? 'Interior' : 'Interior',
     desc: lang === 'id' 
       ? 'Sebuah mahakarya spesialis dapur klasik modern yang menghadirkan nuansa elegan dan bersih. Perpaduan warna dominan putih dengan furnitur bernuansa gelap menciptakan keseimbangan visual yang sempurna, memberikan kesan mewah yang timeless di jantung rumah Anda.' 
       : 'A masterpiece of modern classic kitchen specialist that brings an elegant and clean feel. The combination of dominant white color with dark-nuanced furniture creates a perfect visual balance, providing a timeless luxurious impression in the heart of your home.',
@@ -102,7 +102,7 @@ const getPortfolio = (lang) => [
       '/mr-end-house-4.jpg'
     ]
   },
-  { id:9, title:'MRS. D', fullName:'Mrs. Dewi House - Nuansa Putih, Coklat, Emas', location:'Kota Wisata Cibubur', area:'250 m2', year: '2022', cat: lang === 'id' ? 'Interior' : 'Interior',
+  { id:9, title:'MRS. D', fullName:'Mrs. D House - Nuansa Putih, Coklat, Emas', location:'Kota Wisata Cibubur', region: 'Bogor', area:'250 m2', year: '2022', cat: lang === 'id' ? 'Interior' : 'Interior',
     desc: lang === 'id' 
       ? 'Ruangan ini memadukan keindahan klasik modern dengan palet warna yang penuh kehangatan. Dinding putih bersih bertindak sebagai kanvas yang sempurna untuk menonjolkan keindahan detail klasik, sementara sentuhan coklat hangat memberikan nuansa yang nyaman dan mewah. Desain klasik modern ini memancarkan pesona ruang keluarga dengan dinding putih yang bersih, furnitur coklat yang nyaman, dan aksen emas yang melambangkan kemewahan. Suatu santapan mata yang memikat dari paduan desain klasik yang mempesona.' 
       : 'This room blends modern classic beauty with a palette full of warmth. The clean white walls act as a perfect canvas to highlight the beauty of classic details, while warm brown touches provide a comfortable and luxurious feel. This modern classic design exudes the charm of a living room with clean white walls, comfortable brown furniture, and gold accents that symbolize luxury. A captivating feast for the eyes from the blend of mesmerizing classic design.',
@@ -113,7 +113,7 @@ const getPortfolio = (lang) => [
       '/mrs-dewi-house-4.jpg'
     ]
   },
-  { id:10, title:'MRS. G', fullName:'Mrs. Gadis House - Kontras Yang Anggun', location:'Kemang, Jakarta Selatan', area:'300 m2', year: '2022', cat: lang === 'id' ? 'Interior' : 'Interior',
+  { id:10, title:'MRS. G', fullName:'Mrs. G House - Kontras Yang Anggun', location:'Kemang, Jakarta Selatan', region: 'Jakarta', area:'300 m2', year: '2022', cat: lang === 'id' ? 'Interior' : 'Interior',
     desc: lang === 'id' 
       ? 'Kitchen set klasik berwarna putih dan hitam menjadi panggung bagi kemegahan dengan aksen furnitur emas yang berkilauan. Suasana dapur ini menciptakan perasaan kerajaan disetiap sudutnya. Dapur ini menjadi pusat perhatian dengan kitchen set klasik yang bermain dengan palet warna putih dan hitam, sementara furnitur emas memberikan sentuhan megah yang tak terlupakan. Suatu ruang yang menciptakan pengalaman kuliner dalam suasana kemewahan.' 
       : 'The classic white and black kitchen set sets the stage for grandeur with sparkling gold furniture accents. The atmosphere of this kitchen creates a royal feeling in every corner. This kitchen becomes the center of attention with a classic kitchen set playing with a white and black color palette, while gold furniture provides an unforgettable majestic touch. A space that creates a culinary experience in an atmosphere of luxury.',
@@ -124,7 +124,7 @@ const getPortfolio = (lang) => [
       '/mrs-gadis-house-4.jpg'
     ]
   },
-  { id:11, title:'MRS. N', fullName:'Mrs. Nana House - Dapur Bergaya Modern yang Megah', location:'BSD, Tangerang Selatan', area:'600 m2', year: '2021', cat: lang === 'id' ? 'Interior' : 'Interior',
+  { id:11, title:'MRS. N', fullName:'Mrs. N House - Dapur Bergaya Modern yang Megah', location:'BSD, Tangerang Selatan', region: 'Tangerang', area:'600 m2', year: '2021', cat: lang === 'id' ? 'Interior' : 'Interior',
     desc: lang === 'id' 
       ? 'Dapur ini adalah perwujudan keanggunan klasik dengan kitchen set berwarna putih yang mempesona, menyatu dengan lantai marmer yang memancarkan kemewahan. Sebuah ruang dapur yang memberikan pengalaman visual yang tak terlupakan. Kitchen set dengan warna putih yang murni ditemani oleh lantai marmer yang megah, menciptakan ruang dapur yang menawan. Keindahan klasik bersatu dengan unsur kemewahan, menciptakan suatu karya seni yang dapat dinikmati setiap hari.' 
       : 'This kitchen is an embodiment of classic elegance with a dazzling white kitchen set, blending with a marble floor that radiates luxury. A kitchen space that provides an unforgettable visual experience. The pure white kitchen set accompanied by a magnificent marble floor creates a captivating kitchen space. Classic beauty unites with elements of luxury, creating a work of art that can be enjoyed every day.',
@@ -138,7 +138,7 @@ const getPortfolio = (lang) => [
       '/mrs-nana-house-7.jpg'
     ]
   },
-  { id:12, title:'MRS. AS', fullName:'Mrs. Asep House - Klasik Yang Bersinar', location:'Cibubur, Jakarta Timur', area:'300 m2', year: '2021', cat: lang === 'id' ? 'Interior' : 'Interior',
+  { id:12, title:'MRS. AS', fullName:'Mrs. AS House - Klasik Yang Bersinar', location:'Cibubur, Jakarta Timur', region: 'Jakarta', area:'300 m2', year: '2021', cat: lang === 'id' ? 'Interior' : 'Interior',
     desc: lang === 'id' 
       ? 'Dapur ini memancarkan keanggunan klasik dalam desain minimalis yang indah. Kitchen set putih bersih dipasangkan dengan aksen emas yang menawan, menciptakan harmoni visual yang mengagumkan. Dapur ini adalah pameran keindahan minimalis dengan kitchen set putih yang menawan dan sentuhan aksen emas yang lembut. Desain yang menciptakan suasana tenang, tetapi tak kehilangan keanggunan. Kitchen set minimalis dengan warna putih yang memukau dan sentuhan emas yang diselipkan dengan penuh kelembutan. Desain yang mengekspresikan keanggunan dalam kesederhanaan.' 
       : 'This kitchen radiates classic elegance in a beautiful minimalist design. A clean white kitchen set is paired with charming gold accents, creating an amazing visual harmony. This kitchen is an exhibition of minimalist beauty with a charming white kitchen set and a soft touch of gold accents. A design that creates a calm atmosphere, without losing its elegance. A minimalist kitchen set with stunning white color and gold touches inserted with full tenderness. A design that expresses elegance in simplicity.',
@@ -147,6 +147,17 @@ const getPortfolio = (lang) => [
       '/mrs-asep-house-2.jpg',
       '/mrs-asep-house-3.jpg',
       '/mrs-asep-house-4.jpg'
+    ]
+  },
+  { id:13, title:'MR. I', fullName:'Mr. I House - Sentuhan Putih Klasik', location:'Depok', region: 'Depok', area:'200 m2', year: '2026', cat: lang === 'id' ? 'Interior' : 'Interior',
+    desc: lang === 'id' 
+      ? 'Hunian di Depok ini menonjolkan desain klasik yang bersih dengan dominasi warna putih cerah dan lantai marmer yang elegan. Area dapur memancarkan pesona modern-klasik melalui kitchen set putih beraksen emas, dipadukan dengan kabinet abu-abu yang memberikan kontras visual yang menawan. Setiap ruangan, termasuk kamar mandi berlapis marmer abu-abu, dirancang untuk memberikan kesan luas, mewah, namun tetap nyaman untuk keseharian.' 
+      : 'This residence in Depok highlights a clean classic design with a dominance of bright white colors and elegant marble floors. The kitchen area radiates a modern-classic charm through a white kitchen set with gold accents, combined with a grey cabinet that provides a captivating visual contrast. Every room, including the grey marble-clad bathroom, is designed to give a spacious, luxurious, yet comfortable impression for everyday life.',
+    images: [
+      '/mr-i-house-1.jpg',
+      '/mr-i-house-2.jpg',
+      '/mr-i-house-3.jpg',
+      '/mr-i-house-4.jpg'
     ]
   },
 ];
@@ -189,9 +200,16 @@ export default function PortfolioPage() {
   const [ref, vis] = useScrollAnimation({ threshold: 0.05 });
   const [activeItem, setActiveItem] = useState(null);
   const [activeImageIdx, setActiveImageIdx] = useState(0);
+  const [activeFilter, setActiveFilter] = useState('Semua');
   const { lang } = useLanguage();
 
   const portfolioData = getPortfolio(lang);
+  const filteredPortfolio = portfolioData.filter(item => {
+    if (activeFilter === 'Semua') return true;
+    return item.region === activeFilter;
+  });
+
+  const regions = ['Semua', 'Jakarta', 'Bogor', 'Depok', 'Tangerang', 'Bekasi', 'Luar Jabodetabek'];
 
   // Lock body scroll when lightbox is open
   useEffect(() => {
@@ -233,13 +251,35 @@ export default function PortfolioPage() {
           </motion.div>
         </div>
 
+        {/* Filter UI */}
+        <motion.div 
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className="flex flex-wrap justify-center gap-2 md:gap-3 mb-12"
+        >
+          {regions.map((region) => (
+            <button
+              key={region}
+              onClick={() => setActiveFilter(region)}
+              className={`px-4 py-2 rounded-full text-[10px] md:text-xs font-semibold tracking-wider uppercase transition-all duration-300 border ${
+                activeFilter === region 
+                ? 'bg-[#C9A84C] text-white border-[#C9A84C]' 
+                : 'bg-transparent text-white/50 border-white/20 hover:border-[#C9A84C] hover:text-[#C9A84C]'
+              }`}
+            >
+              {region}
+            </button>
+          ))}
+        </motion.div>
+
         {/* Grid */}
         <motion.div
           layout
           className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-3 md:gap-6"
         >
-          <AnimatePresence>
-            {portfolioData.map(item => (
+          <AnimatePresence mode="popLayout">
+            {filteredPortfolio.map(item => (
               <motion.div
                 key={item.id}
                 layout
