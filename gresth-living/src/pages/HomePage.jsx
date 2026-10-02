@@ -156,7 +156,7 @@ function BrandIntro() {
             className="absolute -bottom-6 right-2 sm:right-6 w-32 h-32 sm:w-36 sm:h-36 rounded-full flex flex-col items-center justify-center shadow-card-hover text-center"
             style={{ background: '#0D0D0D', border: '1px solid rgba(201,168,76,0.30)' }}
           >
-            <p className="font-playfair text-2xl sm:text-3xl font-bold gold-text"><CountUp to={150} suffix="+" /></p>
+            <p className="text-2xl sm:text-3xl font-bold gold-text"><CountUp to={150} suffix="+" /></p>
             <p className="text-[10px] sm:text-xs uppercase tracking-widest text-white/50 mt-1">{lang === 'id' ? 'Proyek' : 'Projects'}<br />{lang === 'id' ? 'Selesai' : 'Completed'}</p>
           </motion.div>
         </motion.div>
@@ -240,7 +240,7 @@ function StatsStrip() {
             animate={vis ? { opacity: 1, y: 0 } : {}}
             transition={{ delay: i * 0.1 + 0.1 }}
           >
-            <p className="font-playfair text-4xl font-bold text-white"><CountUp to={s.to} suffix={s.suffix} /></p>
+            <p className="text-4xl font-bold text-white"><CountUp to={s.to} suffix={s.suffix} /></p>
             <p className="text-[10px] uppercase tracking-[0.2em] text-black/60 mt-1">{s.label}</p>
           </motion.div>
         ))}
@@ -307,7 +307,7 @@ function ServicesPreview() {
             {[...getServices(lang), ...getServices(lang)].map((s, i) => {
               const Icon = s.icon;
               return (
-                <SwiperSlide key={`${s.title}-${i}`} className="w-[320px] sm:w-[380px]">
+                <SwiperSlide key={`${s.title}-${i}`} className="w-[260px] sm:w-[380px]">
                   <div className="service-card group p-10 h-full flex flex-col mx-2" style={{ background: '#141414', border: '1px solid rgba(201,168,76,0.15)' }}>
                     <div className="w-12 h-12 flex items-center justify-center mb-8 border border-gold-DEFAULT/30 group-hover:border-gold-DEFAULT transition-colors">
                       <Icon size={22} className="text-gold-DEFAULT" aria-hidden="true" />

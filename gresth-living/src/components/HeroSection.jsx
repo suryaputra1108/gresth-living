@@ -116,7 +116,7 @@ export default function HeroSection() {
               { to: 98,  suffix: '%', label: lang === 'id' ? 'Klien Puas' : 'Satisfied Clients' },
             ].map((s) => (
               <div key={s.label} className="text-center">
-                <p className="font-playfair text-3xl gold-text font-bold">
+                <p className="text-3xl gold-text font-bold">
                   <CountUp to={s.to} suffix={s.suffix} />
                 </p>
                 <p className="text-[10px] tracking-widest uppercase mt-1" style={{ color: 'rgba(255,255,255,0.40)' }}>

@@ -74,7 +74,7 @@ export default function TentangPage() {
               className="absolute -bottom-6 -right-4 sm:-right-8 p-6 rounded-xl shadow-card-hover bg-white"
               style={{ border: '1px solid rgba(201,168,76,0.20)' }}
             >
-              <p className="font-playfair text-4xl font-bold gold-text">
+              <p className="text-4xl font-bold gold-text">
                 <CountUp to={2012} duration={2.5} />
               </p>
               <p className="text-xs tracking-widest uppercase mt-1 text-charcoal/50">
