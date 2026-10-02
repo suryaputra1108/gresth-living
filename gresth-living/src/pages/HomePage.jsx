@@ -350,21 +350,29 @@ function PortfolioPreview() {
         </motion.div>
 
         <motion.div variants={staggerContainer} initial="hidden" animate={vis ? 'visible' : 'hidden'}
-          className="flex overflow-x-auto snap-x snap-mandatory gap-4 pb-6 px-6 -mx-6 lg:mx-0 lg:px-0 lg:grid lg:grid-cols-4"
-          style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+          className="w-full pb-6"
         >
-          {getPortfolioPreview(lang).map((p, i) => (
-            <motion.div key={p.title} variants={scaleIn}
-              className="portfolio-card group cursor-pointer relative overflow-hidden flex-none w-[70vw] sm:w-[45vw] lg:w-auto snap-center"
-              style={{ aspectRatio: '3/4', borderRadius: '4px' }}>
-              <img src={p.url} alt={p.title} className="w-full h-full object-cover" loading="lazy" />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent" />
-              <div className="absolute bottom-0 left-0 right-0 p-5 translate-y-2 group-hover:translate-y-0 transition-transform duration-400">
-                <p className="font-playfair text-sm sm:text-base font-bold text-white">{p.title}</p>
-                <p className="text-[10px] text-white/50 uppercase tracking-widest mt-1">{p.loc}</p>
-              </div>
-            </motion.div>
-          ))}
+          <Swiper
+            slidesPerView={'auto'}
+            spaceBetween={16}
+            loop={true}
+            autoplay={{ delay: 3000, disableOnInteraction: false }}
+            modules={[Autoplay]}
+            className="w-full"
+          >
+            {[...getPortfolioPreview(lang), ...getPortfolioPreview(lang)].map((p, i) => (
+              <SwiperSlide key={`${p.title}-${i}`} className="w-[70vw] sm:w-[45vw] lg:w-[280px]">
+                <div className="portfolio-card group cursor-pointer relative overflow-hidden w-full h-full" style={{ aspectRatio: '3/4', borderRadius: '4px' }}>
+                  <img src={p.url} alt={p.title} className="w-full h-full object-cover" loading="lazy" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent" />
+                  <div className="absolute bottom-0 left-0 right-0 p-5 translate-y-2 group-hover:translate-y-0 transition-transform duration-400">
+                    <p className="font-playfair text-sm sm:text-base font-bold text-white">{p.title}</p>
+                    <p className="text-[10px] text-white/50 uppercase tracking-widest mt-1">{p.loc}</p>
+                  </div>
+                </div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
         </motion.div>
 
         <motion.div variants={fadeInUp} initial="hidden" animate={vis ? 'visible' : 'hidden'}
@@ -376,43 +384,10 @@ function PortfolioPreview() {
   );
 }
 
-/* ─── Testimonials (LIGHT section) ─── */
 function TestimonialsSection() {
   const [ref, vis] = useScrollAnimation({ threshold: 0.1 });
-  const scrollRef = React.useRef(null);
-  const [activeIndex, setActiveIndex] = React.useState(0);
   const { lang } = useLanguage();
   const testdata = getTestimonials(lang);
-
-  const handleScroll = () => {
-    if (scrollRef.current) {
-      const scrollLeft = scrollRef.current.scrollLeft;
-      // Using clientWidth to estimate the width of a single card + gap
-      const itemWidth = scrollRef.current.scrollWidth / testdata.length;
-      const index = Math.round(scrollLeft / itemWidth);
-      if (!isNaN(index) && index !== activeIndex) {
-        setActiveIndex(index);
-      }
-    }
-  };
-
-  const scrollTo = (index) => {
-    if (scrollRef.current) {
-      const child = scrollRef.current.children[index];
-      if (child) {
-        // Use native scrollIntoView to perfectly center the item, letting CSS scroll-snap and scroll-smooth handle the rest
-        child.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
-      }
-    }
-  };
-
-  const handlePrev = () => {
-    if (activeIndex > 0) scrollTo(activeIndex - 1);
-  };
-
-  const handleNext = () => {
-    if (activeIndex < testdata.length - 1) scrollTo(activeIndex + 1);
-  };
 
   return (
     <section ref={ref} className="py-16 md:py-28 px-6 section-light" aria-labelledby="testi-heading">
@@ -431,65 +406,53 @@ function TestimonialsSection() {
           </motion.p>
         </motion.div>
 
-        <motion.div variants={staggerContainer} initial="hidden" animate={vis ? 'visible' : 'hidden'} className="relative">
-          <div
-            ref={scrollRef}
-            onScroll={handleScroll}
-            className="flex overflow-x-auto gap-6 pb-6 snap-x snap-mandatory scroll-smooth -mx-6 px-6 md:mx-0 md:px-0 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none']">
-            {testdata.map((t) => (
-              <motion.blockquote
-                key={t.name}
-                variants={fadeInUp}
-                className="flex-shrink-0 w-[85vw] md:w-[400px] p-8 rounded-2xl snap-center hover:-translate-y-1 transition-transform duration-300"
-                style={{
-                  background: '#FFFFFF',
-                  border: '1px solid rgba(201,168,76,0.15)',
-                  boxShadow: '0 12px 40px rgba(0,0,0,0.06)'
-                }}
-              >
-                <div className="flex gap-1 mb-5">
-                  {[...Array(5)].map((_, i) => <span key={i} style={{ color: '#C9A84C' }}>★</span>)}
+        <motion.div variants={staggerContainer} initial="hidden" animate={vis ? 'visible' : 'hidden'} className="w-full">
+          <style>{`
+            .testi-swiper .swiper-pagination-bullet {
+              background: rgba(26,20,20,0.2);
+              width: 10px;
+              height: 10px;
+              transition: all 0.3s ease;
+            }
+            .testi-swiper .swiper-pagination-bullet-active {
+              background: #1A1414;
+              width: 32px;
+              border-radius: 5px;
+            }
+            .testi-swiper {
+              padding-bottom: 60px !important;
+            }
+          `}</style>
+          <Swiper
+            slidesPerView={'auto'}
+            spaceBetween={24}
+            loop={true}
+            autoplay={{ delay: 4000, disableOnInteraction: false }}
+            pagination={{ clickable: true }}
+            modules={[Autoplay, Pagination]}
+            className="testi-swiper w-full"
+          >
+            {[...testdata, ...testdata].map((t, i) => (
+              <SwiperSlide key={`${t.name}-${i}`} className="w-[85vw] md:w-[400px]">
+                <div className="p-8 rounded-2xl h-full flex flex-col"
+                  style={{
+                    background: '#FFFFFF',
+                    border: '1px solid rgba(201,168,76,0.15)',
+                    boxShadow: '0 12px 40px rgba(0,0,0,0.06)'
+                  }}
+                >
+                  <div className="flex gap-1 mb-5">
+                    {[...Array(5)].map((_, j) => <span key={j} style={{ color: '#C9A84C' }}>★</span>)}
+                  </div>
+                  <p className="text-sm leading-relaxed mb-6 flex-grow" style={{ color: '#5A4A4A' }}>{t.text}</p>
+                  <footer>
+                    <cite className="not-italic font-semibold text-sm" style={{ color: '#1A1414' }}>{t.name}</cite>
+                    <p className="text-xs uppercase tracking-widest mt-0.5" style={{ color: '#9A8080' }}>{t.location}</p>
+                  </footer>
                 </div>
-                <p className="text-sm leading-relaxed mb-6" style={{ color: '#5A4A4A' }}>{t.text}</p>
-                <footer>
-                  <cite className="not-italic font-semibold text-sm" style={{ color: '#1A1414' }}>{t.name}</cite>
-                  <p className="text-xs uppercase tracking-widest mt-0.5" style={{ color: '#9A8080' }}>{t.location}</p>
-                </footer>
-              </motion.blockquote>
+              </SwiperSlide>
             ))}
-          </div>
-
-          {/* Pagination Dots & Arrows */}
-          <div className="flex items-center justify-center mt-8 gap-4">
-            <button 
-              onClick={handlePrev}
-              disabled={activeIndex === 0}
-              className="w-10 h-10 rounded-full flex items-center justify-center border border-[#1A1414]/20 text-[#1A1414]/50 hover:bg-[#1A1414]/10 hover:text-[#1A1414] disabled:opacity-30 disabled:hover:bg-transparent disabled:cursor-not-allowed transition-colors"
-              aria-label="Previous Testimonial"
-            >
-              <ChevronLeft size={20} />
-            </button>
-
-            <div className="flex justify-center gap-2">
-              {testdata.map((_, i) => (
-                <button
-                  key={i}
-                  aria-label={`Go to slide ${i + 1}`}
-                  onClick={() => scrollTo(i)}
-                  className={`h-2.5 rounded-full transition-all duration-300 ${activeIndex === i ? 'w-8 bg-[#1A1414]' : 'w-2.5 bg-[#1A1414]/20 hover:bg-[#1A1414]/40'}`}
-                />
-              ))}
-            </div>
-
-            <button 
-              onClick={handleNext}
-              disabled={activeIndex === testdata.length - 1}
-              className="w-10 h-10 rounded-full flex items-center justify-center border border-[#1A1414]/20 text-[#1A1414]/50 hover:bg-[#1A1414]/10 hover:text-[#1A1414] disabled:opacity-30 disabled:hover:bg-transparent disabled:cursor-not-allowed transition-colors"
-              aria-label="Next Testimonial"
-            >
-              <ChevronRight size={20} />
-            </button>
-          </div>
+          </Swiper>
         </motion.div>
       </div>
     </section>
@@ -531,6 +494,35 @@ function CtaBanner() {
   );
 }
 
+/* ─── Quote Section ─── */
+function QuoteSection() {
+  const [ref, vis] = useScrollAnimation({ threshold: 0.2 });
+  const { lang } = useLanguage();
+  return (
+    <section ref={ref} className="relative py-24 md:py-32 px-6 overflow-hidden flex items-center justify-center">
+      <div 
+        className="absolute inset-0 bg-cover bg-center"
+        style={{ backgroundImage: 'url("/quote-bg.jpg")' }}
+      />
+      <div className="absolute inset-0 bg-black/60" />
+      <motion.div
+        variants={fadeInUp} initial="hidden" animate={vis ? 'visible' : 'hidden'}
+        className="relative max-w-4xl mx-auto text-center"
+      >
+        <span className="text-[#C9A84C] text-6xl md:text-8xl font-playfair leading-none block mb-4">"</span>
+        <h2 className="font-playfair text-2xl md:text-4xl lg:text-5xl font-medium text-white mb-8 leading-snug">
+          {lang === 'id' 
+            ? "Dengan sepenuhnya hadir di saat ini, Anda mengalami keabadian. Di dalam keabadian itu, Anda akan menemukan jati diri yang sesungguhnya."
+            : "Being fully in the present, you experience the timeless. In the timeless, you find your true self."}
+        </h2>
+        <p className="text-[#C9A84C] tracking-widest uppercase text-sm font-semibold">
+          — Deepak Chopra
+        </p>
+      </motion.div>
+    </section>
+  );
+}
+
 export default function HomePage() {
   return (
     <main>
@@ -539,6 +531,7 @@ export default function HomePage() {
       <StatsStrip />
       <ServicesPreview />
       <PortfolioPreview />
+      <QuoteSection />
       <TestimonialsSection />
       <CtaBanner />
     </main>

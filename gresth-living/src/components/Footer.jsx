@@ -98,15 +98,32 @@ export default function Footer() {
               </a>
               <div className="flex items-start gap-3">
                 <MapPin size={15} className="text-gold-DEFAULT mt-0.5 flex-shrink-0" aria-hidden="true" />
-                <span>Jl. Contoh Lokasi No. 1,<br />Jakarta Selatan 12345</span>
+                <a 
+                  href="https://maps.app.goo.gl/mUNws1PEx9fpsJi27" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="hover:text-gold-DEFAULT transition-colors"
+                >
+                  <span>Jl. Contoh Lokasi No. 1,<br />Jakarta Selatan 12345</span>
+                </a>
               </div>
             </address>
 
             {/* ── Google Maps Embed (Local SEO) ── */}
             <div
-              className="rounded-xl overflow-hidden border border-white/10"
+              className="rounded-xl overflow-hidden border border-white/10 relative group"
               aria-label="Lokasi Gresth Living di Google Maps"
             >
+              <a 
+                href="https://maps.app.goo.gl/mUNws1PEx9fpsJi27" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="absolute inset-0 z-10 flex items-center justify-center bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+              >
+                <span className="bg-gold-DEFAULT text-white text-xs font-semibold px-4 py-2 rounded-full shadow-lg">
+                  Buka di Google Maps
+                </span>
+              </a>
               <iframe
                 src="https://maps.google.com/maps?q=-6.352075,106.9646592&z=17&hl=id&output=embed"
                 width="100%"

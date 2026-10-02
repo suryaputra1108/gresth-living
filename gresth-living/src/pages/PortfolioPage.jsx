@@ -8,47 +8,145 @@ import { useLanguage } from '../context/LanguageContext';
 
 
 const getPortfolio = (lang) => [
-  { id:1, title:'MRS. A', fullName:'Mrs. A Residence - American Classic', location:'Jakarta Selatan', area:'350 m2', cat: lang === 'id' ? 'Interior' : 'Interior',
-    desc: lang === 'id' ? 'Renovasi interior bergaya American Classic dengan kabinet custom sage green dan top table marmer premium. Memaksimalkan pencahayaan alami dan efisiensi ruang gerak secara elegan.' : 'American Classic style interior renovation with custom sage green cabinets and premium marble top table. Maximizing natural lighting and spatial efficiency elegantly.',
+  { id:1, title:'MRS. G', fullName:'Mrs. G House - Classic Blue-Grey Kitchen', location:'Andara, Jakarta Selatan', area:'200 m2', year: '2024', cat: lang === 'id' ? 'Interior' : 'Interior',
+    desc: lang === 'id' 
+      ? 'Dengan kombinasi palet biru-abu, dapur klasik ini menciptakan suasana yang abadi, menawarkan harmoni antara keanggunan klasik dan ketenangan warna-warna yang dipilih. Desain simpel namun memberikan sentuhan kemewahan kelas atas.' 
+      : 'With a blue-grey palette combination, this classic kitchen creates a timeless atmosphere, offering harmony between classic elegance and the serenity of the chosen colors. Simple design yet offers a touch of high-class luxury.',
     images: [
-      'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=80&w=1200&auto=format&fit=crop',
-      'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=1200&auto=format&fit=crop',
-      'https://images.unsplash.com/photo-1598928506311-c55dedbfc1a2?q=80&w=1200&auto=format&fit=crop'
+      '/mrs-g-house-1.jpg',
+      '/mrs-g-house-2.jpg',
+      '/mrs-g-house-3.jpg',
+      '/mrs-g-house-4.jpg'
     ]
   },
-  { id:2, title:'MR. B', fullName:'Mr. B House - Royal Mansion', location:'Tangerang', area:'500 m2', cat: lang === 'id' ? 'Arsitektur' : 'Architecture',
-    desc: lang === 'id' ? 'Desain arsitektur fasad klasik dengan pilar-pilar kokoh dan jendela melengkung. Dilengkapi dengan lanskap taman yang simetris untuk memperkuat kesan megah.' : 'Classic facade architectural design with sturdy pillars and arched windows. Equipped with a symmetrical garden landscape to strengthen the majestic impression.',
+  { id:2, title:'MRS. H', fullName:'Mrs. H House - Soft Classic Kitchen Set', location:'Pejaten, Jakarta Selatan', area:'200 m2', year: '2022', cat: lang === 'id' ? 'Interior' : 'Interior',
+    desc: lang === 'id' 
+      ? 'Didominasi oleh warna putih, dapur klasik ini menampilkan keindahan dalam kesederhanaan, memberikan kesan elegan yang abadi. Warna putih menciptakan dasar yang sempurna untuk mencapai tampilan dapur klasik yang bersih dan indah.' 
+      : 'Dominated by white, this classic kitchen displays beauty in simplicity, providing a timeless elegant impression. White creates the perfect foundation to achieve a clean and beautiful classic kitchen look.',
     images: [
-      'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=80&w=1200&auto=format&fit=crop',
-      'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1200&auto=format&fit=crop'
+      '/mrs-h-house-1.jpg',
+      '/mrs-h-house-2.jpg',
+      '/mrs-h-house-3.jpg',
+      '/mrs-h-house-4.jpg'
     ]
   },
-  { id:3, title:'MRS. C', fullName:'Mrs. C Mansion - Classic Dining', location:'Bekasi', area:'420 m2', cat: lang === 'id' ? 'Interior' : 'Interior',
-    desc: lang === 'id' ? 'Ruang makan formal dengan lampu gantung kristal dan meja makan kayu mahoni berkapasitas 8 orang. Cocok untuk menjamu tamu kehormatan dalam suasana hangat.' : 'Formal dining room with crystal chandeliers and a mahogany wood dining table with an 8-person capacity. Suitable for entertaining guests of honor in a warm atmosphere.',
+  { id:3, title:'MR. E', fullName:'Mr. Eddy House - Klasik Kontemporer', location:'Pati, Jawa Tengah', area:'400 m2', year: '2023', cat: lang === 'id' ? 'Interior' : 'Interior',
+    desc: lang === 'id' 
+      ? 'Dinding putih bersih menciptakan latar belakang yang damai. Ruang makan open space ini memamerkan keanggunan warna putih yang cerah, sementara ruang keluarga memancarkan kehangatan dengan dominasi warna putih dan furnitur coklat yang elegan.' 
+      : 'Clean white walls create a peaceful background. This open space dining room showcases the elegance of bright white colors, while the living room exudes warmth with the dominance of white and elegant brown furniture.',
     images: [
-      'https://images.unsplash.com/photo-1617806118233-18e1de247200?q=80&w=1200&auto=format&fit=crop',
-      'https://images.unsplash.com/photo-1604578762246-41134e37f9cc?q=80&w=1200&auto=format&fit=crop'
+      '/mr-e-house-1.jpg',
+      '/mr-e-house-2.jpg',
+      '/mr-e-house-3.jpg',
+      '/mr-e-house-4.jpg',
+      '/mr-e-house-5.jpg',
+      '/mr-e-house-6.jpg'
     ]
   },
-  { id:4, title:'MR. D', fullName:'Mr. D Villa - Executive Concept', location:'Jakarta Pusat', area:'280 m2', cat: lang === 'id' ? 'Interior' : 'Interior',
-    desc: lang === 'id' ? 'Ruang kerja bernuansa kayu gelap dan kulit asli. Dilengkapi dengan built-in bookshelf klasik setinggi plafon yang memberikan aura maskulin dan profesional.' : 'Workspace with dark wood nuances and genuine leather. Equipped with ceiling-height classic built-in bookshelves that provide a masculine and professional aura.',
+  { id:4, title:'MR. EN', fullName:'Mr. Endrizal House - Kemewahan Modern', location:'Batusangkar, Sumatera Barat', area:'600 m2', year: '2023', cat: lang === 'id' ? 'Interior' : 'Interior',
+    desc: lang === 'id' 
+      ? 'Dinding ruang tamu dicat dengan warna abu-abu yang lembut dan netral, memberikan latar belakang yang bersih dan mencerahkan ruangan. Lantai marmer menciptakan kilauan alami yang memancarkan kemewahan nan elegan tak tertandingi.' 
+      : 'The living room walls are painted in a soft and neutral gray, providing a clean background that brightens the room. The marble floor creates a natural shine that radiates an unparalleled elegant luxury.',
     images: [
-      'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?q=80&w=1200&auto=format&fit=crop',
-      'https://images.unsplash.com/photo-1524758631624-e2822e304c36?q=80&w=1200&auto=format&fit=crop'
+      '/mr-en-house-1.jpg',
+      '/mr-en-house-2.jpg',
+      '/mr-en-house-3.jpg',
+      '/mr-en-house-4.jpg'
     ]
   },
-  { id:5, title:'MRS. E', fullName:'Mrs. E Residence - Elegant Foyer', location:'Bogor', area:'600 m2', cat: lang === 'id' ? 'Arsitektur' : 'Architecture',
-    desc: lang === 'id' ? 'Area penyambutan tamu dengan lantai marmer berpola klasik dan meja konsol beraksen emas. Memberikan impresi pertama yang tak terlupakan dari pintu masuk utama.' : 'Guest welcoming area with classic patterned marble floors and a gold-accented console table. Provides an unforgettable first impression from the main entrance.',
+  { id:5, title:'MRS. R', fullName:'Mrs. Raden House - Nuansa Mewah Keanggunan Sentuhan Pink dan Kemewahan Emas', location:'BSD, Semarang', area:'800 m2', year: '2022', cat: lang === 'id' ? 'Interior' : 'Interior',
+    desc: lang === 'id' 
+      ? 'Warna pink yang lembut memberikan kehangatan, aksen emas yang berkilauan memberikan kemewahan, dan elemen putih yang bersih menciptakan harmoni sempurna. Suasana klasik yang memukau memenuhi setiap sudut interior ini, diwarnai dengan sentuhan mewah dari palet warna yang khas.' 
+      : 'The soft pink color provides warmth, sparkling gold accents provide luxury, and clean white elements create perfect harmony. A stunning classic atmosphere fills every corner of this interior, colored with a luxurious touch from a distinctive color palette.',
     images: [
-      'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?q=80&w=1200&auto=format&fit=crop',
-      'https://images.unsplash.com/photo-1600121848594-d8644e57abab?q=80&w=1200&auto=format&fit=crop'
+      '/mrs-raden-house-1.jpg',
+      '/mrs-raden-house-2.jpg',
+      '/mrs-raden-house-3.jpg',
+      '/mrs-raden-house-4.jpg',
+      '/mrs-raden-house-5.jpg',
+      '/mrs-raden-house-6.jpg',
+      '/mrs-raden-house-7.jpg',
+      '/mrs-raden-house-8.jpg'
     ]
   },
-  { id:6, title:'DR. F', fullName:'Dr. F House - Presidential Suite', location:'Depok', area:'310 m2', cat: lang === 'id' ? 'Interior' : 'Interior',
-    desc: lang === 'id' ? 'Desain kamar tidur bernuansa putih bersih dengan sentuhan moulding klasik yang proporsional dan elegan, memberikan kenyamanan maksimal.' : 'Clean white nuanced bedroom design with a touch of proportional and elegant classic moulding, providing maximum comfort.',
+  { id:6, title:'MR. A', fullName:'Mr. Andry House - Eksklusifitas Marmer', location:'Rancamaya, Bogor', area:'1000 m2', year: '2022', cat: lang === 'id' ? 'Interior' : 'Interior',
+    desc: lang === 'id' 
+      ? 'Keanggunan warna putih dan kemewahan marmer dalam dapur ini melampaui fungsi memasak. Dapur ini bukan hanya tempat untuk mengolah bahan makanan, tetapi juga ruang di mana kreativitas dan kebersamaan bersatu. Warna putih menciptakan atmosfer yang tenang, memberikan keleluasaan bagi pikiran untuk melayang dan kreasi untuk berkembang. Marmer hitam menjadi pondasi yang kokoh, mengingatkan kita bahwa setiap momen di dapur ini adalah bagian dari kisah panjang kehidupan.' 
+      : 'The elegance of white and the luxury of marble in this kitchen go beyond the function of cooking. This kitchen is not just a place to prepare food, but also a space where creativity and togetherness unite. The white color creates a calm atmosphere, giving freedom for the mind to wander and creations to develop. The black marble becomes a solid foundation, reminding us that every moment in this kitchen is part of the long story of life.',
     images: [
-      'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?q=80&w=1200&auto=format&fit=crop',
-      'https://images.unsplash.com/photo-1631049307264-da0ec9d70304?q=80&w=1200&auto=format&fit=crop'
+      '/mr-andry-house-1.jpg',
+      '/mr-andry-house-2.jpg',
+      '/mr-andry-house-3.jpg',
+      '/mr-andry-house-4.jpg'
+    ]
+  },
+  { id:7, title:'MRS. AN', fullName:'Mrs. Anna House - Putih Murni dengan Aksen Kayu', location:'Citragrand, Cibubur', area:'850 m2', year: '2021', cat: lang === 'id' ? 'Interior' : 'Interior',
+    desc: lang === 'id' 
+      ? 'Tempat ini sempurna untuk menyimpan dan mengekspresikan jati diri fashion Anda. Sementara itu, suasana dapur yang merangkul keindahan alam tercipta melalui kitchen set putih klasik dengan aksen kayu coklat, memberikan ruang yang ramah dan hangat. Menjelajahi keanggunan dalam setiap detail, begitu Anda melangkah masuk ke dalam dunia keindahan dapur yang abadi, menciptakan suasana yang memancarkan ketenangan dan kemewahan melalui setiap detailnya.' 
+      : 'This place is perfect for storing and expressing your fashion identity. Meanwhile, a kitchen atmosphere that embraces natural beauty is created through a classic white kitchen set with brown wood accents, providing a friendly and warm space. Exploring elegance in every detail, as soon as you step into the timeless world of kitchen beauty, it creates an atmosphere that radiates tranquility and luxury through every detail.',
+    images: [
+      '/mrs-anna-house-1.jpg',
+      '/mrs-anna-house-2.jpg',
+      '/mrs-anna-house-3.jpg',
+      '/mrs-anna-house-4.jpg'
+    ]
+  },
+  { id:8, title:'MR. END', fullName:'Mr. End House - Modern Classic Specialist', location:'Jakarta', area:'-', year: '-', cat: lang === 'id' ? 'Interior' : 'Interior',
+    desc: lang === 'id' 
+      ? 'Sebuah mahakarya spesialis dapur klasik modern yang menghadirkan nuansa elegan dan bersih. Perpaduan warna dominan putih dengan furnitur bernuansa gelap menciptakan keseimbangan visual yang sempurna, memberikan kesan mewah yang timeless di jantung rumah Anda.' 
+      : 'A masterpiece of modern classic kitchen specialist that brings an elegant and clean feel. The combination of dominant white color with dark-nuanced furniture creates a perfect visual balance, providing a timeless luxurious impression in the heart of your home.',
+    images: [
+      '/mr-end-house-1.jpg',
+      '/mr-end-house-2.jpg',
+      '/mr-end-house-3.jpg',
+      '/mr-end-house-4.jpg'
+    ]
+  },
+  { id:9, title:'MRS. D', fullName:'Mrs. Dewi House - Nuansa Putih, Coklat, Emas', location:'Kota Wisata Cibubur', area:'250 m2', year: '2022', cat: lang === 'id' ? 'Interior' : 'Interior',
+    desc: lang === 'id' 
+      ? 'Ruangan ini memadukan keindahan klasik modern dengan palet warna yang penuh kehangatan. Dinding putih bersih bertindak sebagai kanvas yang sempurna untuk menonjolkan keindahan detail klasik, sementara sentuhan coklat hangat memberikan nuansa yang nyaman dan mewah. Desain klasik modern ini memancarkan pesona ruang keluarga dengan dinding putih yang bersih, furnitur coklat yang nyaman, dan aksen emas yang melambangkan kemewahan. Suatu santapan mata yang memikat dari paduan desain klasik yang mempesona.' 
+      : 'This room blends modern classic beauty with a palette full of warmth. The clean white walls act as a perfect canvas to highlight the beauty of classic details, while warm brown touches provide a comfortable and luxurious feel. This modern classic design exudes the charm of a living room with clean white walls, comfortable brown furniture, and gold accents that symbolize luxury. A captivating feast for the eyes from the blend of mesmerizing classic design.',
+    images: [
+      '/mrs-dewi-house-1.jpg',
+      '/mrs-dewi-house-2.jpg',
+      '/mrs-dewi-house-3.jpg',
+      '/mrs-dewi-house-4.jpg'
+    ]
+  },
+  { id:10, title:'MRS. G', fullName:'Mrs. Gadis House - Kontras Yang Anggun', location:'Kemang, Jakarta Selatan', area:'300 m2', year: '2022', cat: lang === 'id' ? 'Interior' : 'Interior',
+    desc: lang === 'id' 
+      ? 'Kitchen set klasik berwarna putih dan hitam menjadi panggung bagi kemegahan dengan aksen furnitur emas yang berkilauan. Suasana dapur ini menciptakan perasaan kerajaan disetiap sudutnya. Dapur ini menjadi pusat perhatian dengan kitchen set klasik yang bermain dengan palet warna putih dan hitam, sementara furnitur emas memberikan sentuhan megah yang tak terlupakan. Suatu ruang yang menciptakan pengalaman kuliner dalam suasana kemewahan.' 
+      : 'The classic white and black kitchen set sets the stage for grandeur with sparkling gold furniture accents. The atmosphere of this kitchen creates a royal feeling in every corner. This kitchen becomes the center of attention with a classic kitchen set playing with a white and black color palette, while gold furniture provides an unforgettable majestic touch. A space that creates a culinary experience in an atmosphere of luxury.',
+    images: [
+      '/mrs-gadis-house-1.jpg',
+      '/mrs-gadis-house-2.jpg',
+      '/mrs-gadis-house-3.jpg',
+      '/mrs-gadis-house-4.jpg'
+    ]
+  },
+  { id:11, title:'MRS. N', fullName:'Mrs. Nana House - Dapur Bergaya Modern yang Megah', location:'BSD, Tangerang Selatan', area:'600 m2', year: '2021', cat: lang === 'id' ? 'Interior' : 'Interior',
+    desc: lang === 'id' 
+      ? 'Dapur ini adalah perwujudan keanggunan klasik dengan kitchen set berwarna putih yang mempesona, menyatu dengan lantai marmer yang memancarkan kemewahan. Sebuah ruang dapur yang memberikan pengalaman visual yang tak terlupakan. Kitchen set dengan warna putih yang murni ditemani oleh lantai marmer yang megah, menciptakan ruang dapur yang menawan. Keindahan klasik bersatu dengan unsur kemewahan, menciptakan suatu karya seni yang dapat dinikmati setiap hari.' 
+      : 'This kitchen is an embodiment of classic elegance with a dazzling white kitchen set, blending with a marble floor that radiates luxury. A kitchen space that provides an unforgettable visual experience. The pure white kitchen set accompanied by a magnificent marble floor creates a captivating kitchen space. Classic beauty unites with elements of luxury, creating a work of art that can be enjoyed every day.',
+    images: [
+      '/mrs-nana-house-1.jpg',
+      '/mrs-nana-house-2.jpg',
+      '/mrs-nana-house-3.jpg',
+      '/mrs-nana-house-4.jpg',
+      '/mrs-nana-house-5.jpg',
+      '/mrs-nana-house-6.jpg',
+      '/mrs-nana-house-7.jpg'
+    ]
+  },
+  { id:12, title:'MRS. AS', fullName:'Mrs. Asep House - Klasik Yang Bersinar', location:'Cibubur, Jakarta Timur', area:'300 m2', year: '2021', cat: lang === 'id' ? 'Interior' : 'Interior',
+    desc: lang === 'id' 
+      ? 'Dapur ini memancarkan keanggunan klasik dalam desain minimalis yang indah. Kitchen set putih bersih dipasangkan dengan aksen emas yang menawan, menciptakan harmoni visual yang mengagumkan. Dapur ini adalah pameran keindahan minimalis dengan kitchen set putih yang menawan dan sentuhan aksen emas yang lembut. Desain yang menciptakan suasana tenang, tetapi tak kehilangan keanggunan. Kitchen set minimalis dengan warna putih yang memukau dan sentuhan emas yang diselipkan dengan penuh kelembutan. Desain yang mengekspresikan keanggunan dalam kesederhanaan.' 
+      : 'This kitchen radiates classic elegance in a beautiful minimalist design. A clean white kitchen set is paired with charming gold accents, creating an amazing visual harmony. This kitchen is an exhibition of minimalist beauty with a charming white kitchen set and a soft touch of gold accents. A design that creates a calm atmosphere, without losing its elegance. A minimalist kitchen set with stunning white color and gold touches inserted with full tenderness. A design that expresses elegance in simplicity.',
+    images: [
+      '/mrs-asep-house-1.jpg',
+      '/mrs-asep-house-2.jpg',
+      '/mrs-asep-house-3.jpg',
+      '/mrs-asep-house-4.jpg'
     ]
   },
 ];
@@ -185,11 +283,10 @@ export default function PortfolioPage() {
               {/* Close Button */}
               <button
                 onClick={() => setActiveItem(null)}
-                className="absolute top-3 right-3 z-50 w-9 h-9 rounded-full flex items-center justify-center transition-all"
-                style={{ background: 'rgba(201,168,76,0.15)', border: '1px solid rgba(201,168,76,0.30)', color: '#C9A84C' }}
+                className="absolute top-3 right-3 lg:top-4 lg:right-4 z-50 w-10 h-10 rounded-full flex items-center justify-center transition-all bg-red-600/80 backdrop-blur-md border border-red-400/50 text-white shadow-[0_0_15px_rgba(220,38,38,0.5)] hover:bg-red-500/90"
                 aria-label={lang === 'id' ? 'Tutup' : 'Close'}
               >
-                <X size={16} />
+                <X size={20} strokeWidth={2.5} />
               </button>
 
               {/* Image Section */}
@@ -213,13 +310,13 @@ export default function PortfolioPage() {
                   <>
                     <button 
                       onClick={prevImage}
-                      className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-black/40 hover:bg-gold-DEFAULT text-white rounded-full flex items-center justify-center backdrop-blur-sm transition-all opacity-0 group-hover:opacity-100"
+                      className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-black/40 hover:bg-gold-DEFAULT text-white rounded-full flex items-center justify-center backdrop-blur-sm transition-all shadow-md"
                     >
                       <ChevronLeft size={24} />
                     </button>
                     <button 
                       onClick={nextImage}
-                      className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-black/40 hover:bg-gold-DEFAULT text-white rounded-full flex items-center justify-center backdrop-blur-sm transition-all opacity-0 group-hover:opacity-100"
+                      className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-black/40 hover:bg-gold-DEFAULT text-white rounded-full flex items-center justify-center backdrop-blur-sm transition-all shadow-md"
                     >
                       <ChevronRight size={24} />
                     </button>
@@ -245,24 +342,26 @@ export default function PortfolioPage() {
                  </div>
                  <h2 className="font-playfair text-2xl font-bold text-white mb-4">{activeItem.fullName}</h2>
                  
-                 <div className="flex flex-col gap-5 mt-2 mb-8">
-                   <div className="flex items-center gap-3">
-                     <div className="w-8 h-8 rounded-full flex items-center justify-center text-gold-DEFAULT" style={{ background: 'rgba(201,168,76,0.10)' }}>
-                       <MapPin size={16} />
-                     </div>
-                     <div>
-                       <p className="text-[10px] uppercase tracking-widest font-semibold mb-0.5" style={{ color: 'rgba(255,255,255,0.35)' }}>{lang === 'id' ? 'Lokasi' : 'Location'}</p>
-                       <p className="text-sm font-medium text-white">{activeItem.location}</p>
-                     </div>
+                 <div className="flex flex-col gap-5 mt-2 mb-8 text-left">
+                   <div>
+                     <p className="text-[10px] uppercase tracking-widest font-semibold mb-1" style={{ color: 'rgba(255,255,255,0.4)' }}>INTERIOR DESIGNER</p>
+                     <p className="font-playfair text-lg text-white">GRESTH LIVING</p>
                    </div>
-                   <div className="flex items-center gap-3">
-                     <div className="w-8 h-8 rounded-full flex items-center justify-center text-gold-DEFAULT" style={{ background: 'rgba(201,168,76,0.10)' }}>
-                       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><path d="M3 9h18"></path><path d="M9 21V9"></path></svg>
-                     </div>
-                     <div>
-                       <p className="text-[10px] uppercase tracking-widest font-semibold mb-0.5" style={{ color: 'rgba(255,255,255,0.35)' }}>{lang === 'id' ? 'Luas Area' : 'Area Size'}</p>
-                       <p className="text-sm font-medium text-white">{activeItem.area}</p>
-                     </div>
+                   <div>
+                     <p className="text-[10px] uppercase tracking-widest font-semibold mb-1" style={{ color: 'rgba(255,255,255,0.4)' }}>CONSTRUCTION INTERIOR</p>
+                     <p className="font-playfair text-lg text-white">GRESTH LIVING</p>
+                   </div>
+                   <div>
+                     <p className="text-[10px] uppercase tracking-widest font-semibold mb-1" style={{ color: 'rgba(255,255,255,0.4)' }}>PROJECT YEAR</p>
+                     <p className="font-playfair text-lg text-white">{activeItem.year}</p>
+                   </div>
+                   <div>
+                     <p className="text-[10px] uppercase tracking-widest font-semibold mb-1" style={{ color: 'rgba(255,255,255,0.4)' }}>LUASAN</p>
+                     <p className="font-playfair text-lg text-white">{activeItem.area}</p>
+                   </div>
+                   <div>
+                     <p className="text-[10px] uppercase tracking-widest font-semibold mb-1" style={{ color: 'rgba(255,255,255,0.4)' }}>ALAMAT</p>
+                     <p className="font-playfair text-lg text-white uppercase">{activeItem.location}</p>
                    </div>
                  </div>
 

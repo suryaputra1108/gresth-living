@@ -204,7 +204,7 @@ function BusinessProcess() {
   return (
     <section ref={ref} className="py-20 px-6 section-dark-2" aria-labelledby="workflow-heading">
       <div className="max-w-3xl mx-auto">
-        <motion.div variants={staggerContainer} initial="hidden" animate={vis ? 'visible' : 'hidden'} className="text-center mb-16">
+        <motion.div variants={staggerContainer} initial="hidden" animate={vis ? 'visible' : 'hidden'} className="text-center mb-10">
           <motion.div variants={fadeIn} className="section-label justify-center"><span>{lang === 'id' ? 'Cara Kerja Kami' : 'How We Work'}</span></motion.div>
           <motion.h2 id="workflow-heading" variants={fadeInUp} className="font-playfair text-2xl sm:text-3xl md:text-4xl font-bold text-white mt-2">
             {lang === 'id' ? 'Alur' : 'Business'} <span className="gold-text">{lang === 'id' ? 'Proses Bisnis' : 'Process Workflow'}</span>
@@ -215,6 +215,21 @@ function BusinessProcess() {
               ? '10 langkah transparan dan terstruktur dari Gresth Living untuk memastikan kepuasan Anda dari awal hingga serah terima.'
               : '10 transparent and structured steps from Gresth Living to ensure your satisfaction from start to handover.'}
           </motion.p>
+        </motion.div>
+
+        {/* Parallax Image Block */}
+        <motion.div 
+          variants={fadeInUp} initial="hidden" animate={vis ? 'visible' : 'hidden'}
+          className="relative w-full h-[350px] sm:h-[450px] overflow-hidden rounded-2xl mb-16 shadow-2xl"
+        >
+          <motion.div 
+            className="absolute -inset-10 bg-cover bg-center"
+            style={{
+              backgroundImage: 'url("/layanan-process-bg.jpg")',
+              y: useTransform(scrollYProgress, [0, 1], ["-15%", "15%"])
+            }}
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0d0d0d] via-transparent to-transparent opacity-80" />
         </motion.div>
 
         <div ref={containerRef} className="relative">
